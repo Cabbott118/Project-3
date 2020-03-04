@@ -5,23 +5,23 @@ const Schema = mongoose.Schema;
 const ItemScehma = new Schema({
     vin: {
         type: String,
-        required: true
+        required: false
     },
     brand: {
         type: String,
-        required: true
+        required: false
     },
     typetrailer: {
         type: String,
-        required: true
+        required: false
     },
     dimensions: {
         type: String,
-        required: true
+        required: false
     },
     weight: {
         type: String,
-        required: true
+        required: false
     },
     date: {
         type: Date,

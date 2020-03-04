@@ -9,7 +9,6 @@ import {
     CSSTransition,
     TransitionGroup
 } from 'react-transition-group';
-// import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import { 
     getItems,
@@ -35,8 +34,8 @@ class ItemList extends Component {
                 <ListGroup>
                     <TransitionGroup className="item-list">
                         {/* Map through and desctructure */}
-                        {items.map(({ id, brand, typetrailer }) => (
-                            <CSSTransition key={id} timeout={500} classNames="fade">
+                        {items.map(({ _id, brand }) => (
+                            <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
                                     <Button
                                         className="remove-btn float-right"
@@ -44,13 +43,13 @@ class ItemList extends Component {
                                         color="danger"
                                         size="sm"
                                         // Bind and pass in id to keep correct id for delete
-                                        onClick={this.onDeleteClick.bind(this, id)}
+                                        onClick={this.onDeleteClick.bind(this, _id)}
                                     >&times;</Button>
                                         <h6 className="">Brand:</h6>
                                         {brand}
-                                        <br></br>
+                                        {/* <br></br>
                                         <h6 className="mt-2">Type:</h6>
-                                        {typetrailer}
+                                        {typetrailer} */}
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}

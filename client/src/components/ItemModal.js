@@ -12,17 +12,14 @@ import {
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
 
-import { v4 as uuidv4 } from 'uuid';
-
-
 class ItemModal extends Component {
     state = {
         modal: false,
-        vin: '',
+        // vin: '',
         brand: '',
-        typetrailer: '',
-        dimensions: '',
-        weight: ''
+        // typetrailer: '',
+        // dimensions: '',
+        // weight: ''
     };
 
     toggle = () => {
@@ -33,29 +30,27 @@ class ItemModal extends Component {
     };
 
     onChange = (e) => {
-        this.setState({ [e.target.vin]: e.target.value });
+        // this.setState({ [e.target.vin]: e.target.value });
         this.setState({ [e.target.brand]: e.target.value });
-        this.setState({ [e.target.typetrailer]: e.target.value });
-        this.setState({ [e.target.dimensions]: e.target.value });
-        this.setState({ [e.target.weight]: e.target.value });
-
+        // this.setState({ [e.target.typetrailer]: e.target.value });
+        // this.setState({ [e.target.dimensions]: e.target.value });
+        // this.setState({ [e.target.weight]: e.target.value });
     };
 
     onSubmit = (e) => {
         e.preventDefault();
         const newItem = {
-            id: uuidv4(),
-            vin: this.state.vin,
+            // vin: this.state.vin,
             brand: this.state.brand,
-            typetrailer: this.state.typetrailer,
-            dimensions: this.state.dimensions,
-            weight: this.state.weight
+            // typetrailer: this.state.typetrailer,
+            // dimensions: this.state.dimensions,
+            // weight: this.state.weight
         }
 
         // Add item via addItem action, then close
         this.props.addItem(newItem);
         this.toggle();
-        console.log(newItem);
+        console.log(this.state.brand);
     }
 
     render() {
@@ -79,16 +74,16 @@ class ItemModal extends Component {
                         <ModalBody>
                             <Form onSubmit={this.onSubmit}>
                                 <FormGroup>
-                                    <Label for='vin'>Trailer VIN:</Label>
+                                    {/* <Label for='vin'>Trailer VIN:</Label>
                                     <Input
                                         type='text'
                                         name='vin'
-                                        id='item'
+                                        id='vin'
                                         placeholder='Ex: 15XFE50331L000053'
                                         onChange={this.onChange}
                                         className="mb-3"
-                                    />
-                                    <Label for='brand'>Trailer Brand:</Label>
+                                    /> */}
+                                    <Label for='item'>Trailer Brand:</Label>
                                     <Input
                                         type='text'
                                         name='brand'
@@ -97,11 +92,11 @@ class ItemModal extends Component {
                                         onChange={this.onChange}
                                         className="mb-3"
                                     />
-                                    <Label for='typetrailer'>Trailer Type:</Label>
+                                    {/* <Label for='typetrailer'>Trailer Type:</Label>
                                     <Input
                                         type='text'
                                         name='typetrailer'
-                                        id='item'
+                                        id='typetrailer'
                                         placeholder='Exs: Dump/Car Hauler/Livestock'
                                         onChange={this.onChange}
                                         className="mb-3"
@@ -110,7 +105,7 @@ class ItemModal extends Component {
                                     <Input
                                         type='text'
                                         name='dimensions'
-                                        id='item'
+                                        id='dimensions'
                                         placeholder='Ex: LxWxH'
                                         onChange={this.onChange}
                                         className="mb-3"
@@ -119,11 +114,11 @@ class ItemModal extends Component {
                                     <Input
                                         type='text'
                                         name='weight'
-                                        id='item'
+                                        id='weight'
                                         placeholder='LBS'
                                         onChange={this.onChange}
                                         className="mb-3"
-                                    />
+                                    /> */}
                                     <Button
                                         outline
                                         color="dark"
