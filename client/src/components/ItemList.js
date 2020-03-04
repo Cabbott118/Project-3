@@ -5,15 +5,12 @@ import {
     ListGroupItem,
     Button
 } from 'reactstrap';
-import {
+import { 
     CSSTransition,
     TransitionGroup
 } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { 
-    getItems,
-    deleteItem
-} from '../actions/itemActions';
+import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 class ItemList extends Component {
@@ -27,14 +24,12 @@ class ItemList extends Component {
     }
 
     render() {
-        
         const { items } = this.props.item;
         return(
             <Container>
                 <ListGroup>
                     <TransitionGroup className="item-list">
-                        {/* Map through and desctructure */}
-                        {items.map(({ _id, brand }) => (
+                        {items.map(({ _id, name }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
                                     <Button
@@ -42,14 +37,11 @@ class ItemList extends Component {
                                         outline
                                         color="danger"
                                         size="sm"
-                                        // Bind and pass in id to keep correct id for delete
                                         onClick={this.onDeleteClick.bind(this, _id)}
-                                    >&times;</Button>
-                                        <h6 className="">Brand:</h6>
-                                        {brand}
-                                        {/* <br></br>
-                                        <h6 className="mt-2">Type:</h6>
-                                        {typetrailer} */}
+                                        // Getting ID to delete item from key={id} above
+                                    >&times;
+                                    </Button>
+                                    {name}
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
@@ -61,7 +53,6 @@ class ItemList extends Component {
 }
 
 ItemList.propTypes = {
-    // When action (getItems) is brought in from REDUX, it is stored as a prop
     getItems: PropTypes.func.isRequired,
     item: PropTypes.object.isRequired
 }
@@ -70,4 +61,7 @@ const mapStateToProps = (state) => ({
     item: state.item
 });
 
-export default connect(mapStateToProps, { getItems, deleteItem })(ItemList);
+export default connect(
+    mapStateToProps,
+    { getItems, deleteItem })
+    (ItemList);

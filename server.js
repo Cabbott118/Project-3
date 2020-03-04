@@ -26,4 +26,4 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
 console.log(`App spinning up...`);
-console.log(`View Item's List API at /api/items`);
+console.log('List of Items in API: http://localhost:5000/api/items');

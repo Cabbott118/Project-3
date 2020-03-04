@@ -18,15 +18,10 @@ router.get('/', (req, res) => {
 // @desc   Create An Item
 // @access Public
 router.post('/', (req, res) => {
-    // Construct a new object to send to DB
     const newItem = new Item({
-        vin: req.body.vin,
-        brand: req.body.brand,
-        typeTrailer: req.body.type,
-        dimensions: req.body.dimensions,
-        weight: req.body.weight
+        name: req.body.name
     });
-    // Save New Item and send it back as JSON
+
     newItem.save()
     .then(item => res.json(item));
 });

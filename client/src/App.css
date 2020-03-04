@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(212, 205, 205);
+}
+
 .fade-enter {
     opacity: 0.01;
 }
