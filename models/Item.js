@@ -11,7 +11,7 @@ const ItemScehma = new Schema({
         type: String,
         required: true
     },
-    type: {
+    typetrailer: {
         type: String,
         required: true
     },
@@ -20,7 +20,7 @@ const ItemScehma = new Schema({
         required: true
     },
     weight: {
-        type: Number,
+        type: String,
         required: true
     },
     date: {

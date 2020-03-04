@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
     const newItem = new Item({
         vin: req.body.vin,
         brand: req.body.brand,
-        type: req.body.type,
+        typeTrailer: req.body.type,
         dimensions: req.body.dimensions,
         weight: req.body.weight
     });
