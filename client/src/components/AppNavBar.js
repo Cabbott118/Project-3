@@ -24,7 +24,7 @@ class AppNavBar extends Component {
 
     render() {
         return (
-        <div>
+            <div>
             <Navbar color="dark" dark expand="sm" className="mb-5">
                 <Container>
                     <NavbarBrand href="/">Company Name</NavbarBrand>
@@ -40,7 +40,7 @@ class AppNavBar extends Component {
                     </Collapse>
                 </Container>
             </Navbar>
-        </div>
+            </div>
         );
     }
 }
