@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ItemScehma = new Schema({
+    vin: {
+        type: String,
+        required: true
+    },
     brand: {
         type: String,
         required: true
