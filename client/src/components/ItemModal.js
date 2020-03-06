@@ -11,19 +11,24 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
+import PropTypes from 'prop-types';
 
 class ItemModal extends Component {
     state = {
         modal: false,
         name: '',
         brand: ''
-    }
+    };
+
+    static propTypes = {
+        isAuthenticated: PropTypes.bool
+    };
 
     toggle = () => {
         this.setState({
             modal: !this.state.modal
         });
-    }
+    };
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -47,12 +52,14 @@ class ItemModal extends Component {
     render() {
         return(
             <div>
-                <Button
+                { this.props.isAuthenticated ? <Button
                     outline
                     color='dark'
                     style={{marginBottom: '2rem'}}
                     onClick={this.toggle}
-                >Add Trailer</Button>
+                >Add Trailer</Button> : <h4 className='mb-3 ml-4'>Please log in to manage items!</h4> }
+
+                
 
                 <Modal
                     isOpen={this.state.modal}
@@ -68,6 +75,7 @@ class ItemModal extends Component {
                                     name='name'
                                     id='item'
                                     placeholder='Add Name...'
+                                    className='mb-3'
                                     onChange={this.onChange}
                                 />
                                 <Label for='item'>Brand</Label>
@@ -76,6 +84,7 @@ class ItemModal extends Component {
                                     name='brand'
                                     id='item'
                                     placeholder='Add Brand...'
+                                    className='mb-3'
                                     onChange={this.onChange}
                                 />
                                 <Button
@@ -94,7 +103,8 @@ class ItemModal extends Component {
 }
 
 const mapStateToProps = state => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, {addItem})(ItemModal);

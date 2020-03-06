@@ -15,6 +15,12 @@ import PropTypes from 'prop-types';
 
 class ItemList extends Component {
 
+    static propTypes = {
+        getItems: PropTypes.func.isRequired,
+        item: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool
+    };
+
     componentDidMount() {
         this.props.getItems();
     }
@@ -28,14 +34,13 @@ class ItemList extends Component {
         return(
             <Container>
                 <ListGroup
-                    // style={{border: 'black solid 1px'}}
                     className='border-top-0'
                 >
                     <TransitionGroup className='item-list'>
                         {items.map(({ _id, name, brand }) => (
                             <CSSTransition key={_id} timeout={500} classNames='fade'>
                                 <ListGroupItem>
-                                    <Button
+                                    { this.props.isAuthenticated ? <Button
                                         className='remove-btn float-right'
                                         outline
                                         color='danger'
@@ -43,9 +48,11 @@ class ItemList extends Component {
                                         onClick={this.onDeleteClick.bind(this, _id)}
                                         // Getting ID to delete item from key={id} above
                                     >&times;
-                                    </Button>
-                                    {name}
-                                    {brand}
+                                    </Button> : null }
+                                    <span><h6>Trailer Name:</h6> {name}</span>
+                                    <br>
+                                    </br>
+                                    <span><h6>Trailer Brand:</h6> {brand}</span>
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
@@ -56,13 +63,9 @@ class ItemList extends Component {
     }
 }
 
-ItemList.propTypes = {
-    getItems: PropTypes.func.isRequired,
-    item: PropTypes.object.isRequired
-}
-
 const mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(

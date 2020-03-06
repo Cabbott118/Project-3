@@ -29,6 +29,65 @@ export const loadUser = ()  => (dispatch, getState) => {
         });
 };
 
+// Register User
+export const register = ({ first_name, last_name, email, password }) => dispatch => {
+    // Headers (REMEMBER POSTMAN?)
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    // Request Body (User Register Info)
+    const body = JSON.stringify({ first_name, last_name, email, password });
+
+    // Pass in User Info which was stored into body and config
+    axios.post('/api/users', body, config)
+        .then(res => dispatch({ 
+            type: REGISTER_SUCCESS,
+            payload: res.data
+         }))
+         .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
+            dispatch({
+                type: REGISTER_FAIL
+            });
+         });
+};
+
+// Login User
+export const login = ({ email, password }) => dispatch => {
+    // Headers (REMEMBER POSTMAN?)
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    // Request Body (User Login Info)
+    const body = JSON.stringify({ email, password });
+
+    // Pass in User Info which was stored into body and config
+    axios.post('/api/auth', body, config)
+        .then(res => dispatch({ 
+            type: LOGIN_SUCCESS,
+            payload: res.data
+         }))
+         .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'));
+            dispatch({
+                type: LOGIN_FAIL
+            });
+         });
+};
+
+// Logout User
+export const logout = () =>  {
+    return {
+        type: LOGOUT_SUCCESS
+    };
+};
+
 // Setup config/headers and token
 export const tokenConfig = getState => {
     // Get token from local storage
