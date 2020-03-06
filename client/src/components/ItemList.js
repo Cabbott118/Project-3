@@ -27,21 +27,25 @@ class ItemList extends Component {
         const { items } = this.props.item;
         return(
             <Container>
-                <ListGroup>
-                    <TransitionGroup className="item-list">
-                        {items.map(({ _id, name }) => (
-                            <CSSTransition key={_id} timeout={500} classNames="fade">
+                <ListGroup
+                    // style={{border: 'black solid 1px'}}
+                    className='border-top-0'
+                >
+                    <TransitionGroup className='item-list'>
+                        {items.map(({ _id, name, brand }) => (
+                            <CSSTransition key={_id} timeout={500} classNames='fade'>
                                 <ListGroupItem>
                                     <Button
-                                        className="remove-btn float-right"
+                                        className='remove-btn float-right'
                                         outline
-                                        color="danger"
-                                        size="sm"
+                                        color='danger'
+                                        size='sm'
                                         onClick={this.onDeleteClick.bind(this, _id)}
                                         // Getting ID to delete item from key={id} above
                                     >&times;
                                     </Button>
                                     {name}
+                                    {brand}
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}

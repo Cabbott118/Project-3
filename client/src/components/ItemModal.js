@@ -16,6 +16,7 @@ class ItemModal extends Component {
     state = {
         modal: false,
         name: '',
+        brand: ''
     }
 
     toggle = () => {
@@ -26,13 +27,15 @@ class ItemModal extends Component {
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
+        this.setState({ [e.target.brand]: e.target.value });
     }
 
     onSubmit = (e) => {
         e.preventDefault();
 
         const newItem = {
-            name: this.state.name
+            name: this.state.name,
+            brand: this.state.brand
         }
 
         // Add item via addItem action
@@ -46,7 +49,7 @@ class ItemModal extends Component {
             <div>
                 <Button
                     outline
-                    color="dark"
+                    color='dark'
                     style={{marginBottom: '2rem'}}
                     onClick={this.toggle}
                 >Add Trailer</Button>
@@ -59,17 +62,25 @@ class ItemModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="item">Item</Label>
+                                <Label for='item'>Name</Label>
                                 <Input 
-                                    type="text"
-                                    name="name"
-                                    id="item"
-                                    placeholder="Add Item..."
+                                    type='text'
+                                    name='name'
+                                    id='item'
+                                    placeholder='Add Name...'
+                                    onChange={this.onChange}
+                                />
+                                <Label for='item'>Brand</Label>
+                                <Input 
+                                    type='text'
+                                    name='brand'
+                                    id='item'
+                                    placeholder='Add Brand...'
                                     onChange={this.onChange}
                                 />
                                 <Button
                                     outline
-                                    color="dark"
+                                    color='dark'
                                     style={{marginTop: '2rem'}}
                                     block
                                 >Submit</Button>
