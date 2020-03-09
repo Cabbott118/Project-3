@@ -2,8 +2,20 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 
+var bodyParser = require('body-parser');
+
 // Item Model
 const Item = require('../../models/Item');
+
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true }));
+
+const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      data: {},
+    },
+  };
 
 // @route  GET api/items
 // @desc   Get All Items
@@ -19,11 +31,15 @@ router.get('/', (req, res) => {
 // @desc   Create An Item
 // @access Private
 router.post('/', auth, (req, res) => {
+    
     const newItem = new Item({
-        name: req.body.name,
-        brand: req.body.brand
+        brand: req.body.brand,
+        trailer_type: req.body.trailer_type,
+        deck_dimensions: req.body.deck_dimensions,
+        weight: req.body.weight,
+        price: req.body.price,
+        date: req.body.date
     });
-
     newItem.save()
     .then(item => res.json(item));
 });

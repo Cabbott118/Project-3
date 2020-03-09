@@ -6,7 +6,7 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
+    // NavLink,
     Container
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -67,11 +67,11 @@ class AppNavBar extends Component {
             <Navbar 
                 color='light' 
                 light expand='sm' 
-                className='mb-5' 
+                className='' 
                 style={{borderBottom: 'black solid 1px'}}
             >
                 <Container>
-                    <NavbarBrand href='/'>Company Name</NavbarBrand>
+                    <NavbarBrand href='/'><strong>LOGO</strong></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className='ml-auto' navbar>

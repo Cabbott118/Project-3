@@ -6,6 +6,7 @@ const config = require('config');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // DB Config
 const db = config.get('mongoURI');

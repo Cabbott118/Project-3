@@ -32,12 +32,12 @@ class ItemList extends Component {
     render() {
         const { items } = this.props.item;
         return(
-            <Container>
+            <Container className='mb-5'>
                 <ListGroup
                     className='border-top-0'
                 >
                     <TransitionGroup className='item-list'>
-                        {items.map(({ _id, name, brand }) => (
+                        {items.map(({ _id, brand, trailer_type, deck_dimensions, weight, price, date }) => (
                             <CSSTransition key={_id} timeout={500} classNames='fade'>
                                 <ListGroupItem>
                                     { this.props.isAuthenticated ? <Button
@@ -49,10 +49,18 @@ class ItemList extends Component {
                                         // Getting ID to delete item from key={id} above
                                     >&times;
                                     </Button> : null }
-                                    <span><h6>Trailer Name:</h6> {name}</span>
-                                    <br>
-                                    </br>
-                                    <span><h6>Trailer Brand:</h6> {brand}</span>
+                                    <Container className='row'>
+                                        <img src='https://via.placeholder.com/150' alt='trailerImg' className='col s6'></img>
+                                        <span className='col s3'><h6>Trailer Brand: </h6>{brand}</span>
+                                        <span className='col s3'><h6>Trailer Type: </h6>{trailer_type}</span>
+                                    </Container>
+                                    <Container className='row'>
+                                        <span className='col s3'><h6>Deck Dimensions: </h6>{deck_dimensions}</span>
+                                        <span className='col s3'><h6>Maximum Weight Capacity: </h6>{weight}</span>
+                                        <span className='col s3'><h6>Price (per Day): </h6>{price}</span>
+                                        
+                                        {/* {date} */}
+                                    </Container>
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}

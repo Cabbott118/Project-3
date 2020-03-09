@@ -16,8 +16,12 @@ import PropTypes from 'prop-types';
 class ItemModal extends Component {
     state = {
         modal: false,
-        name: '',
-        brand: ''
+
+        brand: '',
+        trailer_type: '',
+        deck_dimensions: '',
+        weight: '',
+        price: ''
     };
 
     static propTypes = {
@@ -32,21 +36,25 @@ class ItemModal extends Component {
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        this.setState({ [e.target.brand]: e.target.value });
     }
 
     onSubmit = (e) => {
         e.preventDefault();
 
         const newItem = {
-            name: this.state.name,
-            brand: this.state.brand
+            brand: this.state.brand,
+            trailer_type: this.state.trailer_type,
+            deck_dimensions: this.state.deck_dimensions,
+            weight: this.state.weight,
+            price: this.state.price
         }
 
         // Add item via addItem action
         this.props.addItem(newItem);
         this.toggle();
         console.log(newItem);
+
+        
     }
 
     render() {
@@ -55,11 +63,9 @@ class ItemModal extends Component {
                 { this.props.isAuthenticated ? <Button
                     outline
                     color='dark'
-                    style={{marginBottom: '2rem'}}
+                    className='mt-3 mb-3'
                     onClick={this.toggle}
-                >Add Trailer</Button> : <h4 className='mb-3 ml-4'>Please log in to manage items!</h4> }
-
-                
+                >Add Trailer</Button> : <h4 className='text-center mt-3 mb-3 ml-4'>Please log in to manage items!</h4> }
 
                 <Modal
                     isOpen={this.state.modal}
@@ -69,24 +75,57 @@ class ItemModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for='item'>Name</Label>
-                                <Input 
-                                    type='text'
-                                    name='name'
-                                    id='item'
-                                    placeholder='Add Name...'
-                                    className='mb-3'
-                                    onChange={this.onChange}
-                                />
-                                <Label for='item'>Brand</Label>
+                                
+                                <Label for='brand'>Brand</Label>
                                 <Input 
                                     type='text'
                                     name='brand'
-                                    id='item'
-                                    placeholder='Add Brand...'
+                                    id='brand'
+                                    placeholder='Ex: I dunno brands... lolz'
                                     className='mb-3'
                                     onChange={this.onChange}
                                 />
+
+                                <Label for='trailer_type'>Trailer Type</Label>
+                                <Input 
+                                    type='text'
+                                    name='trailer_type'
+                                    id='trailer_type'
+                                    placeholder='Ex: Enclosed...'
+                                    className='mb-3'
+                                    onChange={this.onChange}
+                                />
+
+                                <Label for='deck_dimensions'>Deck Dimensions</Label>
+                                <Input 
+                                    type='text'
+                                    name='deck_dimensions'
+                                    id='deck_dimensions'
+                                    placeholder='LxW (ft)...'
+                                    className='mb-3'
+                                    onChange={this.onChange}
+                                />
+
+                                <Label for='weight'>Max Weight Capacity</Label>
+                                <Input 
+                                    type='text'
+                                    name='weight'
+                                    id='weight'
+                                    placeholder='in LBS...'
+                                    className='mb-3'
+                                    onChange={this.onChange}
+                                />
+
+                                <Label for='price'>Price/Day</Label>
+                                <Input 
+                                    type='text'
+                                    name='price'
+                                    id='price'
+                                    placeholder='$'
+                                    className='mb-3'
+                                    onChange={this.onChange}
+                                />
+
                                 <Button
                                     outline
                                     color='dark'

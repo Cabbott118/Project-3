@@ -44,5 +44,5 @@ export default function(state = initialState, action) {
         default:
             // Return initialState from current items
             return state;
-    }
-}
+    };
+};

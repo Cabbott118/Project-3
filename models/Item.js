@@ -3,17 +3,33 @@ const Schema = mongoose.Schema;
 
 // Create Schema 
 const ItemSchema = new Schema({
-    name: {
+    // name: {
+    //     type: String,
+    //     required: true
+    // },
+    brand: {
         type: String,
         required: true
     },
-    brand: {
+    trailer_type: {
+        type: String,
+        required: true
+    },
+    deck_dimensions: {
+        type: String,
+        required: true
+    },
+    weight: {
+        type: String,
+        required: true
+    },
+    price: {
         type: String,
         required: true
     },
     date: {
         type: Date,
-         default: Date.now
+        default: Date.now
     }
 });
 
