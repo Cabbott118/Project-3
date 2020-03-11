@@ -15,6 +15,11 @@ import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
 
+const NavbarStyle = {
+    height: '8vh',
+    backgroundColor: 'rgba(0, 0, 0, .8)'
+}
+
 class AppNavBar extends Component {
     // Set state for Navbar Menu
     state = {
@@ -65,13 +70,14 @@ class AppNavBar extends Component {
         return (
             <div>
             <Navbar 
-                color='light' 
-                light expand='sm' 
+                // color='light' 
+                dark
+                expand='sm' 
                 className='' 
-                style={{borderBottom: 'black solid 1px'}}
+                style={NavbarStyle}
             >
                 <Container>
-                    <NavbarBrand href='/'><strong>LOGO</strong></NavbarBrand>
+                    <NavbarBrand href='/'><strong style={{color: 'white'}}>LOGO</strong></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className='ml-auto' navbar>

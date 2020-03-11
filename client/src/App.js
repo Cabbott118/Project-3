@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import AppNavBar from './components/AppNavBar';
-import LandingPage from './components/LandingPage';
 import LandingUnder from './components/LandingUnder';
 import ItemList from './components/ItemList';
+// import ItemCard from './components/ItemCard';
 import ItemModal from './components/ItemModal';
+import Hero from './components/Hero';
 
 import { Container } from 'reactstrap';
 import { Provider } from 'react-redux';
@@ -19,21 +19,20 @@ class App extends Component {
   }
 
   render() {
-  return (
-    <Provider store={store}>
-    <div className="App">
+    return (
+      <Provider store={store}>
 
-      <AppNavBar />
-      <LandingPage />
-      <LandingUnder />
-      <Container>
-        <ItemModal />
-      </Container>
-      <ItemList />
-      
-    </div>
-    </Provider>
-  );
+      <div className="App">
+        <Hero />
+        <LandingUnder />
+        <Container>
+          <ItemModal />
+        </Container>
+        <ItemList />      
+      </div>
+
+      </Provider>
+    );
   }
 }
 

@@ -50,16 +50,15 @@ class ItemList extends Component {
                                     >&times;
                                     </Button> : null }
                                     <Container className='row'>
-                                        <img src='https://via.placeholder.com/150' alt='trailerImg' className='col s6'></img>
-                                        <span className='col s3'><h6>Trailer Brand: </h6>{brand}</span>
-                                        <span className='col s3'><h6>Trailer Type: </h6>{trailer_type}</span>
+                                        <img src='https://via.placeholder.com/150' alt='trailerImg' className='col-4'></img>
+                                        <span className='col-4'><h6>Trailer Brand: </h6>{brand}</span>
+                                        <span className='col-4'><h6>Trailer Type: </h6>{trailer_type}</span>
                                     </Container>
-                                    <Container className='row'>
-                                        <span className='col s3'><h6>Deck Dimensions: </h6>{deck_dimensions}</span>
-                                        <span className='col s3'><h6>Maximum Weight Capacity: </h6>{weight}</span>
-                                        <span className='col s3'><h6>Price (per Day): </h6>{price}</span>
-                                        
-                                        {/* {date} */}
+
+                                    <Container className='row mt-3'>
+                                        <span className='col-4'><h6>Deck Dimensions: </h6>{deck_dimensions}</span>
+                                        <span className='col-4'><h6>Maximum Weight Capacity: </h6>{weight}</span>
+                                        <span className='col-4'><h6>Price (per Day): </h6>${price}.00</span>
                                     </Container>
                                 </ListGroupItem>
                             </CSSTransition>
