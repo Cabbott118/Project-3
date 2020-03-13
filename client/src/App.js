@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import LandingUnder from './components/LandingUnder';
-// import ItemList from './components/ItemList';
-import ItemCard from './components/ItemCard';
+import ItemGrid from './components/ItemGrid';
 import ItemModal from './components/ItemModal';
 import Hero from './components/Hero';
 
@@ -24,11 +23,14 @@ class App extends Component {
 
       <div className="App">
         <Hero />
+
         <LandingUnder />
+
         <Container>
           <ItemModal />
         </Container>
-          <ItemCard />
+
+        <ItemGrid />
       </div>
 
       </Provider>
