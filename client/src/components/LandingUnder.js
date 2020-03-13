@@ -6,6 +6,7 @@ import {
 const landingUnderStyle = {
     background: '#fff',
     padding: '10px',
+    marginTop: '10px',
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
 };
 

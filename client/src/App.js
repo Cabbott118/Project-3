@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LandingUnder from './components/LandingUnder';
-import ItemList from './components/ItemList';
-// import ItemCard from './components/ItemCard';
+// import ItemList from './components/ItemList';
+import ItemCard from './components/ItemCard';
 import ItemModal from './components/ItemModal';
 import Hero from './components/Hero';
 
@@ -28,7 +28,7 @@ class App extends Component {
         <Container>
           <ItemModal />
         </Container>
-        <ItemList />      
+          <ItemCard />
       </div>
 
       </Provider>

@@ -16,6 +16,11 @@ import PropTypes from 'prop-types';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
+const modalStyle = {
+    backgroundColor: '#efefef',
+    color: '#a9a9a9'
+};
+
 class RegisterModal extends Component {
     state = {
         modal: false,
@@ -92,9 +97,16 @@ class RegisterModal extends Component {
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
+                    style={modalStyle}
                 >
-                    <ModalHeader toggle={this.toggle}>Register Account</ModalHeader>
-                    <ModalBody>
+                    <ModalHeader
+                        toggle={this.toggle}
+                        style={modalStyle}
+                    >
+                        Register Account</ModalHeader>
+                    <ModalBody
+                        style={modalStyle}
+                    >
                         { this.state.msg ? ( 
                         <Alert color='danger'>{ this.state.msg }</Alert> 
                         ) : null }
@@ -142,8 +154,11 @@ class RegisterModal extends Component {
 
                                 <Button
                                     outline
-                                    color='dark'
-                                    style={{marginTop: '2rem'}}
+                                    style={{
+                                        marginTop: '2rem',
+                                        color: 'white',
+                                        background: '#ff3b3f'
+                                    }}
                                     block
                                 >Register</Button>
                             </FormGroup>

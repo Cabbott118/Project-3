@@ -13,10 +13,14 @@ import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
+const modalStyle = {
+    backgroundColor: '#efefef',
+    color: '#a9a9a9'
+};
+
 class ItemModal extends Component {
     state = {
         modal: false,
-
         brand: '',
         trailer_type: '',
         deck_dimensions: '',
@@ -62,17 +66,27 @@ class ItemModal extends Component {
             <div>
                 { this.props.isAuthenticated ? <Button
                     outline
-                    color='dark'
+                    style={{
+                        color: 'white',
+                        background: '#ff3b3f'
+                    }}
                     className='mt-3 mb-3'
                     onClick={this.toggle}
-                >Add Trailer</Button> : <h4 className='text-center mt-3 mb-3 ml-4'>Please log in to manage items!</h4> }
+                >Add Trailer</Button> : <h4 className='text-center mt-3 mb-3 ml-4'>You must log in to manage items.</h4> }
 
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
+                    style={modalStyle}
                 >
-                    <ModalHeader toggle={this.toggle}>Trailer Information</ModalHeader>
-                    <ModalBody>
+                    <ModalHeader
+                        toggle={this.toggle}
+                        style={modalStyle}
+                    >
+                        Trailer Information</ModalHeader>
+                    <ModalBody
+                        style={modalStyle}
+                    >
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
                                 
@@ -128,8 +142,11 @@ class ItemModal extends Component {
 
                                 <Button
                                     outline
-                                    color='dark'
-                                    style={{marginTop: '2rem'}}
+                                    style={{
+                                        marginTop: '2rem',
+                                        color: 'white',
+                                        background: '#ff3b3f'
+                                    }}
                                     block
                                 >Submit</Button>
                             </FormGroup>

@@ -16,6 +16,12 @@ import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
+
+const modalStyle = {
+    backgroundColor: '#efefef',
+    color: '#a9a9a9'
+};
+
 class LoginModal extends Component {
     state = {
         modal: false,
@@ -60,7 +66,6 @@ class LoginModal extends Component {
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        this.setState({ [e.target.brand]: e.target.value });
     };
 
     onSubmit = (e) => {
@@ -87,9 +92,16 @@ class LoginModal extends Component {
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
+                    style={modalStyle}
                 >
-                    <ModalHeader toggle={this.toggle}>Account Login</ModalHeader>
-                    <ModalBody>
+                    <ModalHeader
+                        toggle={this.toggle}
+                        style={modalStyle}
+                        >
+                        Account Login</ModalHeader>
+                    <ModalBody
+                        style={modalStyle}
+                    >
                         { this.state.msg ? ( 
                         <Alert color='danger'>{ this.state.msg }</Alert> 
                         ) : null }
@@ -118,8 +130,11 @@ class LoginModal extends Component {
 
                                 <Button
                                     outline
-                                    color='dark'
-                                    style={{marginTop: '2rem'}}
+                                    style={{
+                                        marginTop: '2rem',
+                                        color: 'white',
+                                        background: '#ff3b3f'
+                                    }}
                                     block
                                 >Login</Button>
                             </FormGroup>
