@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import LandingUnder from './components/LandingUnder';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import LandingUnder from './components/LandingUnder';
 import ItemGrid from './components/ItemGrid';
-import ItemModal from './components/ItemModal';
 import Hero from './components/Hero';
 
 import { Container } from 'reactstrap';
@@ -21,18 +21,18 @@ class App extends Component {
     return (
       <Provider store={store}>
 
+      <Router>
       <div className="App">
         <Hero />
-
-        <LandingUnder />
-
-        <Container>
-          <ItemModal />
-        </Container>
-
-        <ItemGrid />
+        {/* <LandingUnder /> */}
+        
+        <Switch>
+          <Route exact path="/listings" component={ItemGrid} />
+        </Switch>
+        
       </div>
-
+      </Router>
+      
       </Provider>
     );
   }

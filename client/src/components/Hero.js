@@ -10,7 +10,6 @@ const HeroStyle = {
     width: '100%',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
-    // backgroundRepeat: 'no-repeat',
     color: 'white'
 }
 

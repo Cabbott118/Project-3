@@ -72,7 +72,7 @@ class ItemModal extends Component {
                     }}
                     className='mt-3 mb-3'
                     onClick={this.toggle}
-                >Add Trailer</Button> : <h4 className='text-center mt-3 mb-3 ml-4'>You must log in to manage items.</h4> }
+                >Add Trailer</Button> : <h4 className='text-left mt-3 mb-3'>To list a trailer, simply log in and register to become a host.</h4> }
 
                 <Modal
                     isOpen={this.state.modal}

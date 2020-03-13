@@ -7,7 +7,6 @@ import {
     CardLink,
     CardTitle,
     CardSubtitle,
-    Col,
     Row
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -15,8 +14,8 @@ import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 const cardStyle = {
-    margin: '5px',
-    width: '30vw'
+    width: '100%',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
 }
 
 class ItemCard extends Component {
@@ -42,7 +41,7 @@ class ItemCard extends Component {
 
         const trailer = items.map(t => {
             return(
-                <div>
+                <div key={t._id} style={{margin: '5px'}}>
                     <Card key={t._id} style={cardStyle}>
                         <CardBody>
                             { this.props.isAuthenticated ? <Button
@@ -54,8 +53,8 @@ class ItemCard extends Component {
                                 // Getting ID to delete item from key={id} above
                                 >&times;
                             </Button> : null }
-                            <CardTitle><span><h5>Brand: {t.brand}</h5></span></CardTitle>
-                            <CardSubtitle><span><h5>Trailer Type: {t.trailer_type}</h5></span></CardSubtitle>
+                            <CardTitle><span><h5 className='text-center'>{t.brand}</h5></span></CardTitle>
+                            <CardSubtitle><span><h5 className='text-center'>{t.trailer_type}</h5></span></CardSubtitle>
                       
                         </CardBody>
                             <img width='100%' src='https://via.placeholder.com/150' alt='Trailer Img' />
@@ -63,7 +62,7 @@ class ItemCard extends Component {
                             <CardTitle className='text-center mb-3'><h5>Additional Information</h5></CardTitle>
                             <CardText>Deck Dimensions: {t.deck_dimensions}</CardText>
                             <CardText>Total Weight Capacity: {t.weight}</CardText>
-                            <CardText>Price per Day: {t.price}</CardText>
+                            <CardText>Price (per Day): ${t.price}.00</CardText>
                             <CardLink href='#'>Card Link</CardLink>
                             <CardLink href='#'>Another Link</CardLink>
                         </CardBody>
