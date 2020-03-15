@@ -1,0 +1,4 @@
+[0315/131841.415:ERROR:process_info.cc(375)] NtQuerySystemInformation SystemExtendedHandleInformation: The specified information record length does not match the length required for the specified information class. (0xc0000004)
+[0315/132052.324:ERROR:process_info.cc(375)] NtQuerySystemInformation SystemExtendedHandleInformation: The specified information record length does not match the length required for the specified information class. (0xc0000004)
+[0315/132130.592:ERROR:process_info.cc(375)] NtQuerySystemInformation SystemExtendedHandleInformation: The specified information record length does not match the length required for the specified information class. (0xc0000004)
+[0315/132434.017:ERROR:process_info.cc(375)] NtQuerySystemInformation SystemExtendedHandleInformation: The specified information record length does not match the length required for the specified information class. (0xc0000004)

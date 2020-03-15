@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 // Create Schema 
 const ItemSchema = new Schema({
-    // name: {
-    //     type: String,
-    //     required: true
-    // },
     brand: {
         type: String,
         required: true
@@ -26,6 +22,9 @@ const ItemSchema = new Schema({
     price: {
         type: String,
         required: true
+    },
+    addedBy :{
+        type: String
     },
     date: {
         type: Date,

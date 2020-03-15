@@ -3,6 +3,10 @@ body {
     color: #a9a9a9;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 h1, h2, h3 {
     color: #caebf2;
     font-family: 'Inter', sans-serif;
@@ -28,4 +32,32 @@ h4, h5, h6 {
 .fade-exit-active {
     opacity: 0.01;
     transition: opacity 1000ms ease-in;
+}
+
+@media only screen and (max-width: 457px) {
+    h1 {
+        font-size: 24px;
+    }
+  }
+
+@media only screen and (max-width: 440px) {
+    h4 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    h1 {
+        font-size: 16px;
+    }
+    h4 {
+        margin-top: 0rem;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .quickSearch {
+        display: none;
+    }
 }

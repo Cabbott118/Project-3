@@ -10,13 +10,6 @@ const Item = require('../../models/Item');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-const config = {
-    headers: {
-      'Content-Type': 'application/json',
-      data: {},
-    },
-  };
-
 // @route  GET api/items
 // @desc   Get All Items
 // @access Public
@@ -38,6 +31,7 @@ router.post('/', auth, (req, res) => {
         deck_dimensions: req.body.deck_dimensions,
         weight: req.body.weight,
         price: req.body.price,
+        addedBy: req.body.addedBy,
         date: req.body.date
     });
     newItem.save()

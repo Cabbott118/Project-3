@@ -6,7 +6,6 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    // NavLink,
     Container
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -38,9 +37,8 @@ class AppNavBar extends Component {
     };
 
     render() {
-
+        
         const { isAuthenticated, user } = this.props.auth;
-
         const authLinks = (
             <Fragment>
                 <NavItem>
@@ -48,6 +46,16 @@ class AppNavBar extends Component {
                         className='navbar-text mr-3'
                     >
                         <strong>{ user ? `Welcome, ${user.first_name}` : '' }</strong>
+                    </span>
+                </NavItem>
+                <NavItem>
+                    <span
+                        className='navbar-text mr-3'
+                        style={{color: 'white',
+                                textDecoration: 'none'
+                        }}
+                    >
+                        <a href='/account'>Account</a>
                     </span>
                 </NavItem>
                 <NavItem>

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import LandingUnder from './components/LandingUnder';
-import ItemGrid from './components/ItemGrid';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Account from './components/Account';
 import Hero from './components/Hero';
-
-import { Container } from 'reactstrap';
+import ItemGrid from './components/ItemGrid';
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
@@ -21,17 +19,13 @@ class App extends Component {
     return (
       <Provider store={store}>
 
-      <Router>
-      <div className="App">
-        <Hero />
-        {/* <LandingUnder /> */}
-        
-        <Switch>
-          <Route exact path="/listings" component={ItemGrid} />
-        </Switch>
-        
-      </div>
-      </Router>
+        <Router>
+          <div className="App">
+          <Route exact path='/' component={Hero} />
+          <Route exact path='/listings' component={ItemGrid} />
+          <Route exact path='/account' component={Account} />
+          </div>
+        </Router>
       
       </Provider>
     );

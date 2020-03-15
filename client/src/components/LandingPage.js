@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ItemModal from './ItemModal';
-import { Link } from "react-router-dom";
 import {
     Button,
     Container,
@@ -41,10 +40,11 @@ class LandingPage extends Component {
                         </h1>
                     </div>
 
-                <Container style={{marginTop: '3rem'}}>
+                <Container>
                     <Row>
                         <Col>
                     <h4 style={{
+                            // marginTop: '3rem',
                             color: '#888888',
                             fontWeight: 'bold',
                             paddingTop: '1rem'
@@ -64,7 +64,7 @@ class LandingPage extends Component {
                     </Col>
 
                     <Col>
-                    <div style={lookUpStyle}> 
+                    <div className='quickSearch' style={lookUpStyle}> 
                     <Container>
                         <h4 style={{marginTop: '1rem'}}>Search trailers based on location</h4>
                     <Form style={{marginTop: '2rem', marginBottom: '1rem'}}>

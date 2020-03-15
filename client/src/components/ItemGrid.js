@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AppNavBar from './AppNavBar';
 import ItemCard from './ItemCard';
 import {
     Container,
@@ -18,6 +19,8 @@ class ItemGrid extends Component {
 
     render() {
         return(
+            <div>
+            <AppNavBar />
             <Container>
                 <Row>
                     <Col>
@@ -25,6 +28,7 @@ class ItemGrid extends Component {
                     </Col>
                 </Row>
             </Container>
+            </div>
         );
     }
 }
