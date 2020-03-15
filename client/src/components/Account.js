@@ -32,9 +32,9 @@ class Account extends Component {
     };
 
     render() {
-
+        
         const { isAuthenticated, user } = this.props.auth;
-
+        
         const profile = (
             <div>
                 <h3
@@ -47,14 +47,22 @@ class Account extends Component {
                 <h4
                     style={accountStyles}
                     >
-                        
                         { user ? `Account Owner: ${user.first_name} ${user.last_name}` : '' }
                 </h4>
                 <h4
                     style={accountStyles}
                     >
-                        
                         { user ? `Registered Email: ${user.email}` : '' }
+                </h4>
+                <h4
+                    style={accountStyles}
+                    >
+                        { user ? `Account Created: ${user.register_date}` : '' }
+                </h4>
+                <h4
+                    style={accountStyles}
+                    >
+                        { user ? `User ID: ${user._id}` : '' }
                 </h4>
             </div>
         );

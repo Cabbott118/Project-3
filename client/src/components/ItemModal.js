@@ -25,11 +25,13 @@ class ItemModal extends Component {
         trailer_type: '',
         deck_dimensions: '',
         weight: '',
-        price: ''
+        price: '',
+        added_by: ''
     };
 
     static propTypes = {
-        isAuthenticated: PropTypes.bool
+        auth: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool,
     };
 
     toggle = () => {
@@ -45,20 +47,21 @@ class ItemModal extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
+        const { user } = this.props.auth;
+        console.log(user._id);
         const newItem = {
             brand: this.state.brand,
             trailer_type: this.state.trailer_type,
             deck_dimensions: this.state.deck_dimensions,
             weight: this.state.weight,
-            price: this.state.price
+            price: this.state.price,
+            added_by: user._id
         }
 
         // Add item via addItem action
         this.props.addItem(newItem);
         this.toggle();
         console.log(newItem);
-
-        
     }
 
     render() {
@@ -160,6 +163,7 @@ class ItemModal extends Component {
 
 const mapStateToProps = state => ({
     item: state.item,
+    auth: state.auth,
     isAuthenticated: state.auth.isAuthenticated
 });
 

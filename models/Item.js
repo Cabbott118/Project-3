@@ -23,7 +23,7 @@ const ItemSchema = new Schema({
         type: String,
         required: true
     },
-    addedBy :{
+    added_by :{
         type: String
     },
     date: {
