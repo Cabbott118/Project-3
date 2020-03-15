@@ -24,6 +24,7 @@ class ItemCard extends Component {
     static propTypes = {
         getItems: PropTypes.func.isRequired,
         item: PropTypes.object.isRequired,
+        auth: PropTypes.object.isRequired,
         isAuthenticated: PropTypes.bool
     };
 
@@ -79,6 +80,7 @@ class ItemCard extends Component {
 
 const mapStateToProps = (state) => ({
     item: state.item,
+    auth: state.auth,
     isAuthenticated: state.auth.isAuthenticated
 });
 

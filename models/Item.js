@@ -24,7 +24,8 @@ const ItemSchema = new Schema({
         required: true
     },
     added_by :{
-        type: String
+        type: String,
+        required: true
     },
     date: {
         type: Date,

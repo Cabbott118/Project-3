@@ -34,7 +34,7 @@ class Account extends Component {
     render() {
         
         const { isAuthenticated, user } = this.props.auth;
-        
+
         const profile = (
             <div>
                 <h3

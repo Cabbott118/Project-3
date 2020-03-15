@@ -31,7 +31,7 @@ router.post('/', auth, (req, res) => {
         deck_dimensions: req.body.deck_dimensions,
         weight: req.body.weight,
         price: req.body.price,
-        addedBy: req.body.addedBy,
+        added_by: req.body.added_by,
         date: req.body.date
     });
     newItem.save()
