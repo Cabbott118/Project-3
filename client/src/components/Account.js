@@ -39,8 +39,13 @@ class Account extends Component {
             <div>
                 <AppNavBar />
                 <Container style={containerStyles}>
-                    <h4 style={{borderBottom: '2px solid #888888',
-                paddingBottom: '1rem'}} className='text-center mb-2'>Account Details</h4>
+                    <h4 style={{
+                        borderBottom: '2px solid #888888',
+                        paddingBottom: '1rem'
+                    }} className='text-center mb-2'>
+                        Account Details
+                    </h4>
+
                     <h4>Account Owner:</h4>
                     <h5>{user.first_name} {user.last_name}</h5>
                     <h4>Registered Email:</h4>
