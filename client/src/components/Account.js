@@ -6,7 +6,7 @@ import {
     Container
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getItems } from '../actions/itemActions';
+import { loadUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
 
 const containerStyles = {
@@ -17,73 +17,46 @@ const containerStyles = {
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
 };
 
-const accountStyles = {
-    color: 'black'
-};
+// const accountStyles = {
+//     color: 'black'
+// };
 
 class Account extends Component {
     static propTypes = {
-        auth: PropTypes.object.isRequired,
-        item: PropTypes.object.isRequired
+        loadUser: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
-        this.props.getItems();
+        this.props.loadUser();
     };
-
-    render() {
-        
-        const { isAuthenticated, user } = this.props.auth;
-
-        const profile = (
+  
+    render() { 
+        const user = this.props.auth.user
+        if (!user) {
+            return null;
+        }
+        return (
             <div>
-                <h3
-                    style={accountStyles}
-                    className='text-center'
-                    >
-                        Account Details
-                </h3>
-                <hr></hr>
-                <h4
-                    style={accountStyles}
-                    >
-                        { user ? `Account Owner: ${user.first_name} ${user.last_name}` : '' }
-                </h4>
-                <h4
-                    style={accountStyles}
-                    >
-                        { user ? `Registered Email: ${user.email}` : '' }
-                </h4>
-                <h4
-                    style={accountStyles}
-                    >
-                        { user ? `Account Created: ${user.register_date}` : '' }
-                </h4>
-                <h4
-                    style={accountStyles}
-                    >
-                        { user ? `User ID: ${user._id}` : '' }
-                </h4>
+                <AppNavBar />
+                <Container style={containerStyles}>
+                    <h4 style={{borderBottom: '2px solid #888888',
+                paddingBottom: '1rem'}} className='text-center mb-2'>Account Details</h4>
+                    <h4>Account Owner:</h4>
+                    <h5>{user.first_name} {user.last_name}</h5>
+                    <h4>Registered Email:</h4>
+                    <h5>{user.email}</h5>
+                </Container>
             </div>
         );
-
-        return(
-            <div>
-            <AppNavBar />
-            <Container style={containerStyles}>
-                { isAuthenticated ? profile : null }
-            </Container> 
-            </div>
-        );
-    }
+    };
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     auth: state.auth,
-    item: state.item
-})
+    user: state.auth
+});
 
 export default connect(
     mapStateToProps,
-    { getItems })
+    { loadUser })
     (Account);

@@ -30,7 +30,6 @@ class ItemCard extends Component {
 
     componentDidMount() {
         this.props.getItems();
-        
     }
 
     onDeleteClick = (id) => {
@@ -40,7 +39,6 @@ class ItemCard extends Component {
     render() {
         const { items } = this.props.item;
         console.log('TRAILERS', items);
-        console.log(items.added_by)
 
         const trailer = items.map(t => {
             return(

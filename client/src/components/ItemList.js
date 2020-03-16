@@ -22,7 +22,6 @@ class ItemList extends Component {
     static propTypes = {
         getItems: PropTypes.func.isRequired,
         item: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool
     };
 
     componentDidMount() {
@@ -45,7 +44,7 @@ class ItemList extends Component {
                     className='border-top-0'
                 >
                     <TransitionGroup className='item-list'>
-                        {items.map(({ _id, brand, trailer_type, deck_dimensions, weight, price, addedBy, date }) => (
+                        {items.map(({ _id, brand, trailer_type, deck_dimensions, weight, price, added_by, date }) => (
                             <CSSTransition key={_id} timeout={500} classNames='fade'>
                                 <ListGroupItem>
                                     { this.props.isAuthenticated ? <Button
@@ -80,7 +79,6 @@ class ItemList extends Component {
 
 const mapStateToProps = (state) => ({
     item: state.item,
-    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(
