@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ItemModal from './ItemModal';
 import {
     Button,
     Container,
@@ -58,8 +57,6 @@ class LandingPage extends Component {
                                 or search for something
                                 specific.
                     </h4>
-
-                    <ItemModal />
 
                     </Col>
 

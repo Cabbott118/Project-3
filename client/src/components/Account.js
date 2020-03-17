@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppNavBar from './AppNavBar';
 import ItemList from './ItemList';
+import ItemModal from './ItemModal';
 import {
     // Button,
     Container
@@ -8,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
+
 
 const containerStyles = {
     marginTop: '2rem',
@@ -59,6 +61,7 @@ class Account extends Component {
                     }} className='text-center mb-2'>
                         Current Listings for: {user.email}
                     </h4>
+                    <ItemModal />
                     <ItemList />
                 </Container>
                 
