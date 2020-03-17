@@ -10,6 +10,7 @@ import {
     TransitionGroup
 } from 'react-transition-group';
 import { connect } from 'react-redux';
+import { loadUser } from '../actions/authActions';
 import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
@@ -20,34 +21,42 @@ const ListStyle = {
 class ItemList extends Component {
 
     static propTypes = {
+        loadUser: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool,
         getItems: PropTypes.func.isRequired,
         item: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
         this.props.getItems();
-    }
+        this.props.loadUser();
+    };
 
     onDeleteClick = (id) => {
         this.props.deleteItem(id);
-    }
+    };
 
     render() {
+
         const { items } = this.props.item;
+        const { _id } = this.props.auth.user;
+        const userID = _id;
+
+        const addListings = (
+            <p className='text-center'>Trailers to be hosted will be shown here.</p>
+        );
+
         return(
             <div>
-            <Button>
-                
-            </Button>
             <Container style={ListStyle} className='mb-5'>
-                <ListGroup
-                    className='border-top-0'
-                >
+                <ListGroup>
                     <TransitionGroup className='item-list'>
                         {items.map(({ _id, brand, trailer_type, deck_dimensions, weight, price, added_by, date }) => (
                             <CSSTransition key={_id} timeout={500} classNames='fade'>
                                 <ListGroupItem>
-                                    { this.props.isAuthenticated ? <Button
+                            { userID === added_by ?  
+                                <Container>
+                                    <Button
                                         className='remove-btn float-right'
                                         outline
                                         color='danger'
@@ -55,7 +64,7 @@ class ItemList extends Component {
                                         onClick={this.onDeleteClick.bind(this, _id)}
                                         // Getting ID to delete item from key={id} above
                                     >&times;
-                                    </Button> : null }
+                                    </Button>
                                     <Container className='row'>
                                         <span className='col-4'><h6>Trailer Brand: </h6>{brand}</span>
                                         <span className='col-4'><h6>Trailer Type: </h6>{trailer_type}</span>
@@ -66,6 +75,8 @@ class ItemList extends Component {
                                         <span className='col-4'><h6>Maximum Weight Capacity: </h6>{weight}</span>
                                         <span className='col-4'><h6>Price (per Day): </h6>${price}.00</span>
                                     </Container>
+                                    </Container>
+                                : addListings }
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
@@ -78,10 +89,12 @@ class ItemList extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    auth: state.auth,
     item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(
     mapStateToProps,
-    { getItems, deleteItem })
+    { getItems, deleteItem, loadUser })
     (ItemList);

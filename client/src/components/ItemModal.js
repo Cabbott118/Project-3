@@ -49,6 +49,9 @@ class ItemModal extends Component {
 
         const { user } = this.props.auth;
         console.log(user._id);
+
+        if (!user._id) return null;
+
         const newItem = {
             brand: this.state.brand,
             trailer_type: this.state.trailer_type,
@@ -98,7 +101,7 @@ class ItemModal extends Component {
                                     type='text'
                                     name='brand'
                                     id='brand'
-                                    placeholder='Ex: I dunno brands... lolz'
+                                    placeholder='Ex: Big Tex Trailers...'
                                     className='mb-3'
                                     onChange={this.onChange}
                                 />
@@ -108,7 +111,7 @@ class ItemModal extends Component {
                                     type='text'
                                     name='trailer_type'
                                     id='trailer_type'
-                                    placeholder='Ex: Enclosed...'
+                                    placeholder='Ex: Dump, Enclosed, Livestock...'
                                     className='mb-3'
                                     onChange={this.onChange}
                                 />

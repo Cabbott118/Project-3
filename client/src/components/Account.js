@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppNavBar from './AppNavBar';
-// import ItemList from './ItemList';
+import ItemList from './ItemList';
 import {
     // Button,
     Container
@@ -17,9 +17,9 @@ const containerStyles = {
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
 };
 
-// const accountStyles = {
-//     color: 'black'
-// };
+const detailsStyle = {
+    marginTop: '1rem'
+}
 
 class Account extends Component {
     static propTypes = {
@@ -46,11 +46,22 @@ class Account extends Component {
                         Account Details
                     </h4>
 
-                    <h4>Account Owner:</h4>
+                    <h4 style={detailsStyle}>Account Owner:</h4>
                     <h5>{user.first_name} {user.last_name}</h5>
-                    <h4>Registered Email:</h4>
+                    <h4 style={detailsStyle}>Registered Email:</h4>
                     <h5>{user.email}</h5>
                 </Container>
+
+                <Container style={containerStyles}>
+                    <h4 style={{
+                        borderBottom: '2px solid #888888',
+                        paddingBottom: '1rem'
+                    }} className='text-center mb-2'>
+                        Current Listings for: {user.email}
+                    </h4>
+                    <ItemList />
+                </Container>
+                
             </div>
         );
     };
