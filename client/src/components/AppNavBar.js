@@ -17,7 +17,7 @@ import Logout from './auth/Logout';
 const NavbarStyle = {
     height: '8vh',
     backgroundColor: 'rgba(0, 0, 0, .8)'
-}
+};
 
 class AppNavBar extends Component {
     // Set state for Navbar Menu
@@ -32,12 +32,11 @@ class AppNavBar extends Component {
     // Set state to opposite of current state when toggled
     toggle = () => {
         this.setState({
-            isOpen: !this.state.isOpen
+            isOpen: !this.state.isOpen,
         });
     };
 
     render() {
-        
         const { isAuthenticated, user } = this.props.auth;
         const authLinks = (
             <Fragment>
@@ -51,8 +50,20 @@ class AppNavBar extends Component {
                 <NavItem>
                     <span
                         className='navbar-text mr-3'
-                        style={{color: 'white',
-                                textDecoration: 'none'
+                        style={{
+                            color: 'white',
+                            textDecoration: 'none'
+                        }}
+                    >
+                        <a href='/listings'>Listings</a>
+                    </span>
+                </NavItem>
+                <NavItem>
+                    <span
+                        className='navbar-text mr-3'
+                        style={{
+                            color: 'white',
+                            textDecoration: 'none'
                         }}
                     >
                         <a href='/account'>Account</a>
@@ -67,6 +78,17 @@ class AppNavBar extends Component {
         const guestLinks = (
             <Fragment>
                 <NavItem>
+                    <span
+                        className='navbar-text mr-3'
+                        style={{
+                            color: 'white',
+                            textDecoration: 'none'
+                        }}
+                    >
+                        <a href='/listings'>Listings</a>
+                    </span>
+                </NavItem>
+                <NavItem>
                     <RegisterModal />
                 </NavItem>
                 <NavItem>
@@ -76,7 +98,7 @@ class AppNavBar extends Component {
         );
 
         return (
-            <div>
+            // <div>
             <Navbar 
                 dark
                 expand='sm' 
@@ -93,13 +115,13 @@ class AppNavBar extends Component {
                     </Collapse>
                 </Container>
             </Navbar>
-            </div>
+            // </div>
         );
-    }
-}
+    };
+};
 
 const mapStateToProps = state => ({
     auth: state.auth
-})
+});
 
 export default connect(mapStateToProps, null)(AppNavBar);

@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 
 const ListStyle = {
     
-}
+};
 
 class ItemList extends Component {
 
@@ -65,28 +65,28 @@ class ItemList extends Component {
                                         // Getting ID to delete item from key={id} above
                                     >&times;
                                     </Button>
-                                    <Container className='row'>
+                                    <div className='row'>
                                         <span className='col-4'><h6>Trailer Brand: </h6>{brand}</span>
                                         <span className='col-4'><h6>Trailer Type: </h6>{trailer_type}</span>
-                                    </Container>
+                                    </div>
 
-                                    <Container className='row mt-3'>
+                                    <div className='row mt-3'>
                                         <span className='col-4'><h6>Deck Dimensions: </h6>{deck_dimensions}</span>
                                         <span className='col-4'><h6>Maximum Weight Capacity: </h6>{weight}</span>
                                         <span className='col-4'><h6>Price (per Day): </h6>${price}.00</span>
+                                    </div>
                                     </Container>
-                                    </Container>
-                                : addListings }
+                                : addListings };
                                 </ListGroupItem>
                             </CSSTransition>
-                        ))}
+                        ))};
                     </TransitionGroup>
                 </ListGroup>
             </Container>
             </div>
         );
-    }
-}
+    };
+};
 
 const mapStateToProps = (state) => ({
     auth: state.auth,

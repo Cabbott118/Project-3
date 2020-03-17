@@ -34,7 +34,7 @@ h4, h5, h6 {
     transition: opacity 1000ms ease-in;
 }
 
-@media only screen and (max-width: 457px) {
+/* @media only screen and (max-width: 457px) {
     h1 {
         font-size: 24px;
     }
@@ -54,10 +54,4 @@ h4, h5, h6 {
         margin-top: 0rem;
         font-size: 16px;
     }
-}
-
-@media only screen and (max-width: 320px) {
-    .quickSearch {
-        display: none;
-    }
-}
+} */

@@ -7,21 +7,17 @@ import {
     Row
 } from 'reactstrap';
 
+const gridStyle = {
+    marginTop: '2rem'
+}
+
 class ItemGrid extends Component {
-
-    static propTypes = {
-        
-    };
-
-    componentDidMount() {
-        
-    }
 
     render() {
         return(
             <div>
             <AppNavBar />
-            <Container>
+            <Container style={gridStyle}>
                 <Row>
                     <Col>
                     <ItemCard />
@@ -30,7 +26,7 @@ class ItemGrid extends Component {
             </Container>
             </div>
         );
-    }
-}
+    };
+};
 
 export default ItemGrid;
