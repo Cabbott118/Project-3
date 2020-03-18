@@ -50,7 +50,7 @@ class QuickSearch extends Component {
                                 placeholder="date placeholder"
                             />
                     </FormGroup>
-                    <Button>Submit</Button>
+                    <Button block style={{background: '#ff3b3f'}}>Search</Button>
                 </Form>
             </Container>       
         );
