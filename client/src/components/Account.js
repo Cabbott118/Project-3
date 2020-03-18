@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import AppNavBar from './AppNavBar';
+import BecomeHostModal from './BecomeHostModal'
 import ItemList from './ItemList';
-import ItemModal from './ItemModal';
 import {
-    // Button,
     Container
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
-
 
 const containerStyles = {
     marginTop: '2rem',
@@ -47,11 +45,13 @@ class Account extends Component {
                     }} className='text-center mb-2'>
                         Account Details
                     </h4>
-
+                    { user.is_admin ? <p>Administrator Account</p> : null }
                     <h4 style={detailsStyle}>Account Owner:</h4>
                     <h5>{user.first_name} {user.last_name}</h5>
                     <h4 style={detailsStyle}>Registered Email:</h4>
                     <h5>{user.email}</h5>
+                    
+                    <BecomeHostModal />
                 </Container>
 
                 <Container style={containerStyles}>
@@ -61,10 +61,8 @@ class Account extends Component {
                     }} className='text-center mb-2'>
                         Current Listings for: {user.email}
                     </h4>
-                    <ItemModal />
                     <ItemList />
                 </Container>
-                
             </div>
         );
     };

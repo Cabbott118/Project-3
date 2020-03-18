@@ -76,10 +76,10 @@ class ItemList extends Component {
                                         <span className='col-4'><h6>Price (per Day): </h6>${price}.00</span>
                                     </div>
                                     </Container>
-                                : addListings };
+                                : addListings }
                                 </ListGroupItem>
                             </CSSTransition>
-                        ))};
+                        ))}
                     </TransitionGroup>
                 </ListGroup>
             </Container>

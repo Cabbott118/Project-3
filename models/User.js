@@ -20,6 +20,16 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    is_host: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    is_admin: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
     register_date: {
         type: Date,
          default: Date.now

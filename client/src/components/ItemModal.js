@@ -42,7 +42,7 @@ class ItemModal extends Component {
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-    }
+    };
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -59,13 +59,13 @@ class ItemModal extends Component {
             weight: this.state.weight,
             price: this.state.price,
             added_by: user._id
-        }
+        };
 
         // Add item via addItem action
         this.props.addItem(newItem);
         this.toggle();
         console.log(newItem);
-    }
+    };
 
     render() {
         return(

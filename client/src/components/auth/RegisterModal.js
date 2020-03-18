@@ -28,6 +28,7 @@ class RegisterModal extends Component {
         last_name: '',
         email: '',
         password: '',
+        confirm_password: '',
         msg: null
     };
 
@@ -72,7 +73,7 @@ class RegisterModal extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { first_name, last_name, email, password } = this.state;
+        const { first_name, last_name, email, password, confirm_password } = this.state;
 
         // Create User Object
         const newUser = {
@@ -82,8 +83,15 @@ class RegisterModal extends Component {
             password
         };
 
+        if (password === confirm_password) {
+            this.props.register(newUser);
+
+        } else {
+            this.setState({ msg: 'Passwords must match' })
+        }
+
         // Attempt to Register
-        this.props.register(newUser);
+        // this.props.register(newUser);
         console.log(newUser);
     }
 
@@ -148,6 +156,16 @@ class RegisterModal extends Component {
                                     name='password'
                                     id='password'
                                     placeholder='Password'
+                                    className='mb-3'
+                                    onChange={this.onChange}
+                                />
+
+                                <Label for='confirm_password'>Confirm Password</Label>
+                                <Input 
+                                    type='password'
+                                    name='confirm_password'
+                                    id='confirm_password'
+                                    placeholder='Confirm Password'
                                     className='mb-3'
                                     onChange={this.onChange}
                                 />
