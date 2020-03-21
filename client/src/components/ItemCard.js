@@ -44,7 +44,6 @@ class ItemCard extends Component {
 
     render() {
         const { items } = this.props.item;
-        console.log('TRAILERS', items);
 
         const trailer = items.map(t => {
             return(

@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
+import ItemModal from './ItemModal';
 
 const containerStyles = {
     marginTop: '2rem',
@@ -52,6 +53,7 @@ class Account extends Component {
                     <h5>{user.email}</h5>
                     
                     <BecomeHostModal />
+                    <ItemModal />
                 </Container>
 
                 <Container style={containerStyles}>

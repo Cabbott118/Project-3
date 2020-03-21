@@ -7,8 +7,8 @@ import {
     ModalBody,
     Form,
     FormGroup,
-    Label,
-    Input
+    // Label,
+    // Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

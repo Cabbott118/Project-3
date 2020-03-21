@@ -38,6 +38,25 @@ router.post('/', auth, (req, res) => {
     .then(item => res.json(item));
 });
 
+// @route  PUT api/items
+// @desc   Edit An Item
+// @access Private
+router.put("/:_id", auth, (req, res) => {
+    //this returns a promise
+    Item.findByIdAndUpdate(
+      req.params._id,
+      req.body,
+      { new: false, useFindAndModify: false },
+      () => {}
+    )
+    .then((updatedItem) => {
+       res.json(updatedItem) //we capture this via our promise-handler on the action
+    })
+    .catch((error) => {
+       return res.status(400).json({ couldnotupdate: "could not update item"})
+    })
+  });
+
 // @route  DELETE api/items
 // @desc   Delete An Item
 // @access Private

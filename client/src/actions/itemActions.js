@@ -3,6 +3,7 @@ import axios from 'axios';
 import { 
     GET_ITEMS,
     ADD_ITEM,
+    EDIT_ITEM,
     DELETE_ITEM,
     ITEMS_LOADING
 } from './constants';
@@ -29,6 +30,18 @@ export const addItem = (item) => (dispatch, getState) => {
         .then(res => 
             dispatch({
                 type: ADD_ITEM,
+                payload: res.data
+            }))
+            .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+export const editItem = (item) => (dispatch, getState) => {
+    axios
+        // Attaching token to request in header
+        .put(`/api/items/${item.id}`, item, tokenConfig(getState))
+        .then(res => 
+            dispatch({
+                type: EDIT_ITEM,
                 payload: res.data
             }))
             .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));

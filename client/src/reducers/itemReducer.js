@@ -1,6 +1,7 @@
 import { 
     GET_ITEMS,
     ADD_ITEM,
+    EDIT_ITEM,
     DELETE_ITEM,
     ITEMS_LOADING
 } from '../actions/constants';
@@ -27,6 +28,21 @@ export default function(state = initialState, action) {
                 items: [action.payload, ...state.items]
             };
 
+        case EDIT_ITEM: 
+            return {
+                ...state,
+                items: state.items.map((item) => {
+                    if (item._id === action.payload._id) {
+                        return {
+                            ...item,
+                            ...action.payload
+                        }
+                    } else {
+                        return item
+                    }
+                })
+            };
+                         
         case DELETE_ITEM:
             return {
                 // Return items state
