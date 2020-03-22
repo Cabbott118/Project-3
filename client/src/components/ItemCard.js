@@ -4,7 +4,6 @@ import {
     CardImg,
     CardText,
     CardBody,
-    CardLink,
     CardTitle,
     CardSubtitle,
     Container,
@@ -49,15 +48,13 @@ class ItemCard extends Component {
             return(
                 <div key={t._id} style={{margin: '5px'}}>  
                     <Card  style={cardStyle}>
-                    <CardImg top width='100%' src='https://via.placeholder.com/150' alt='Trailer Img' />
+                    <CardImg top width='100%' src='https://via.placeholder.com/250x150' alt='Trailer Img' />
                         <CardBody>
-                            <CardTitle><span><h5 className='text-left'>{t.brand}</h5></span></CardTitle>
-                            <CardSubtitle><span><h5 className='text-left'>{t.trailer_type}</h5></span></CardSubtitle>
+                            <CardTitle><span className='text-left'>{t.brand}</span></CardTitle>
+                            <CardSubtitle><span className='text-left'>{t.trailer_type}</span></CardSubtitle>
                             <CardText>Deck Dimensions: {t.deck_dimensions}</CardText>
                             <CardText>Total Weight Capacity: {t.weight}</CardText>
                             <CardText>Price (per Day): ${t.price}.00</CardText>
-                            <CardLink href='#'>Card Link</CardLink>
-                            <CardLink href='#'>Another Link</CardLink>
                         </CardBody>
                     </Card>  
                 </div>

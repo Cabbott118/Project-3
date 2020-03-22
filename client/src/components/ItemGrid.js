@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import AppNavBar from './AppNavBar';
 import ItemCard from './ItemCard';
 import {
+    CardDeck,
     Container,
-    Col,
-    Row
+    // Col,
+    // Row
 } from 'reactstrap';
 
 const gridStyle = {
@@ -18,11 +19,13 @@ class ItemGrid extends Component {
             <div>
             <AppNavBar />
             <Container style={gridStyle}>
-                <Row>
-                    <Col>
+                {/* <Row> */}
+                    {/* <Col> */}
+                    <CardDeck>
                     <ItemCard />
-                    </Col>
-                </Row>
+                    </CardDeck>
+                    {/* </Col> */}
+                {/* </Row> */}
             </Container>
             </div>
         );
