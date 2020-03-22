@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import AppNavBar from './AppNavBar';
 import LandingPage from './LandingPage';
-import Background from '../images/backgroundOne.jpg';
+// import Background from '../images/backgroundOne.jpg';
 
 
 const HeroStyle = {
-    backgroundImage: `url(${Background})`,
-    height: '100vh',
+    // backgroundImage: `url(${Background})`,
+    // background: 'rgba(0, 0, 0, .8)',
+    // height: '100vh',
     width: '100%',
     backgroundPosition: 'center',
     backgroundSize: 'cover',

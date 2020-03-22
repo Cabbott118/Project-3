@@ -66,7 +66,7 @@ class BecomeHostModal extends Component {
                         background: '#ff3b3f'
                     }}
                     className='mt-3 mb-3'
-                    onClick={this.toggle}>Become a Host</Button> }
+                    onClick={this.toggle}><i className="fas fa-check-square"></i> Become a Host</Button> }
 
                 <Modal
                     isOpen={this.state.modal}

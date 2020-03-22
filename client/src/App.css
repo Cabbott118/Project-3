@@ -33,25 +33,3 @@ h4, h5, h6 {
     opacity: 0.01;
     transition: opacity 1000ms ease-in;
 }
-
-/* @media only screen and (max-width: 457px) {
-    h1 {
-        font-size: 24px;
-    }
-  }
-
-@media only screen and (max-width: 440px) {
-    h4 {
-        font-size: 16px;
-    }
-}
-
-@media only screen and (max-width: 375px) {
-    h1 {
-        font-size: 16px;
-    }
-    h4 {
-        margin-top: 0rem;
-        font-size: 16px;
-    }
-} */

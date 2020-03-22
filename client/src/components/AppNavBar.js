@@ -15,7 +15,7 @@ import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
 
 const NavbarStyle = {
-    height: '8vh',
+    // height: '8vh',
     backgroundColor: 'rgba(0, 0, 0, .8)'
 };
 

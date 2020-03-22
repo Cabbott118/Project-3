@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import QuickSearch from './QuickSearch';
 
 const containerStyle = {
-    background: 'rgba(0, 0, 0, .8)',
-    height: '92vh',
+    // background: 'rgba(0, 0, 0, .8)',
+    // height: '92vh',
     width: '100%',
     paddingTop: '50px'
 };

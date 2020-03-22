@@ -9,9 +9,10 @@ import {
     Form,
     FormGroup,
     Label,
-    Input
-    // Row,
-    // Col
+    Input,
+    ButtonGroup,
+    Row,
+    Col
 } from 'reactstrap';
 import { 
     CSSTransition,
@@ -111,26 +112,24 @@ class ItemList extends Component {
                             <CSSTransition key={_id} timeout={500} classNames='fade'>
                                 <ListGroupItem>
                                 { userID === added_by ?  
-                                <Container>
+                                <div>
                                     <Container>
+                                        <ButtonGroup className='float-right'>
                                         <Button
-                                            className='remove-btn'
-                                            outline
+                                            color='primary'
+                                            size='sm'
+                                            // className='mt-3 mb-3'
+                                            onClick={this.toggle.bind(this, _id)}
+                                        ><i className="fas fa-edit"></i>
+                                        </Button>
+                                        <Button
                                             color='danger'
                                             size='sm'
                                             onClick={this.onDeleteClick.bind(this, _id)}
                                             // Getting ID to delete item from key={_id} above
-                                            >&times;
+                                            ><i className="fas fa-window-close"></i>
                                         </Button>
-                                        <Button
-                                            outline
-                                            style={{
-                                                color: 'white',
-                                                background: '#ff3b3f'
-                                            }}
-                                            className='mt-3 mb-3'
-                                            onClick={this.toggle.bind(this, _id)}
-                                        >Edit</Button>
+                                        </ButtonGroup>
                                         <Modal
                                             isOpen={this.state.modal}
                                             toggle={this.toggle}
@@ -212,17 +211,26 @@ class ItemList extends Component {
                                         </Modal>
                                         
                                     </Container>
-                                    <div className='row'>
-                                        <span className='col-4'><h6>Trailer Brand: </h6>{brand}</span>
-                                        <span className='col-4'><h6>Trailer Type: </h6>{trailer_type}</span>
-                                    </div>
-
-                                    <div className='row mt-3'>
-                                        <span className='col-4'><h6>Deck Dimensions: </h6>{deck_dimensions}</span>
-                                        <span className='col-4'><h6>Maximum Weight Capacity: </h6>{weight}</span>
-                                        <span className='col-4'><h6>Price (per Day): </h6>${price}.00</span>
-                                    </div>
-                                </Container>
+                                    <Container>
+                                        <Row>
+                                            <Col style={{color:'#888888'}}>
+                                                <b>{brand} </b>
+                                                <br />
+                                                <b>{trailer_type}</b>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>
+                                                <img src='https://via.placeholder.com/250x150' alt='Trailer Img' />
+                                            </Col>
+                                            <Col>
+                                                <span><h6>Deck Dimensions: </h6>{deck_dimensions}</span>
+                                                <span><h6>Maximum Weight Capacity: </h6>{weight}</span>
+                                                <span><h6>Price (per Day): </h6>${price}.00</span>
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                </div>
                                 : addListings }
                                 </ListGroupItem>
                             </CSSTransition>

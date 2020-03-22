@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 
 const lookUpStyle = {
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
     padding: '10px',
     backgroundColor: '#efefef',
     borderRadius: '5px',
@@ -50,7 +51,7 @@ class QuickSearch extends Component {
                                 placeholder="date placeholder"
                             />
                     </FormGroup>
-                    <Button block style={{background: '#ff3b3f'}}>Search</Button>
+                    <Button block style={{background: '#ff3b3f'}}><i className="fas fa-search"></i> Search</Button>
                 </Form>
             </Container>       
         );
