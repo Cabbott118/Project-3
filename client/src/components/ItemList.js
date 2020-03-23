@@ -18,7 +18,6 @@ import { getItems, editItem, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 const ListStyle = {
-    // width: '75%',
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
     marginBottom: '1.5rem',
     padding: '5px'

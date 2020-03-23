@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
     Container,
-    Col,
     Row
 } from 'reactstrap';
 import QuickSearch from './QuickSearch';
 import About from './About';
 
 const containerStyle = {
+    backgroundColor: 'rgba(0, 0, 0, .8)',
     width: '100%',
     paddingTop: '50px'
 };

@@ -23,7 +23,7 @@ class QuickSearch extends Component {
     render() {
         return(
             <Container style={lookUpStyle}>
-                <h4 style={{marginTop: '1rem'}}>Search trailers based on location</h4>
+                <h4 style={{marginTop: '1rem', textAlign: 'center'}}>Search trailers based on location</h4>
                 <Form style={{marginTop: '2rem', marginBottom: '1rem'}}>
                     <FormGroup>
                         <Label for="rentCity">Location:</Label>

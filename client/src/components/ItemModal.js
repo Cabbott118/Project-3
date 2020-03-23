@@ -31,7 +31,7 @@ class ItemModal extends Component {
 
     static propTypes = {
         auth: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool,
+        isAuthenticated: PropTypes.bool
     };
 
     toggle = () => {
@@ -48,7 +48,6 @@ class ItemModal extends Component {
         e.preventDefault();
 
         const { user } = this.props.auth;
-        console.log(user._id);
 
         if (!user._id) return null;
 
@@ -60,11 +59,10 @@ class ItemModal extends Component {
             price: this.state.price,
             added_by: user._id
         };
-
+            
         // Add item via addItem action
         this.props.addItem(newItem);
         this.toggle();
-        console.log(newItem);
     };
 
     render() {
@@ -167,7 +165,7 @@ class ItemModal extends Component {
 const mapStateToProps = state => ({
     item: state.item,
     auth: state.auth,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, {addItem})(ItemModal);

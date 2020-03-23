@@ -91,7 +91,6 @@ class RegisterModal extends Component {
         }
 
         // Attempt to Register
-        // this.props.register(newUser);
         console.log(newUser);
     }
 
