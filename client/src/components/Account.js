@@ -3,20 +3,13 @@ import AppNavBar from './AppNavBar';
 import BecomeHostModal from './BecomeHostModal'
 import ItemList from './ItemList';
 import {
-    Container
+    Container,
+    Row
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
 import ItemModal from './ItemModal';
-
-const containerStyles = {
-    marginTop: '2rem',
-    paddingTop: '2rem',
-    paddingBottom: '2rem',
-    width: '80vw',
-    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
-};
 
 const detailsStyle = {
     marginTop: '1rem'
@@ -39,7 +32,8 @@ class Account extends Component {
         return (
             <div>
                 <AppNavBar />
-                <Container style={containerStyles}>
+                <Row className='accountRow'>
+                <Container className='accountDetails'>
                     <h4 style={{
                         borderBottom: '2px solid #888888',
                         paddingBottom: '1rem'
@@ -56,7 +50,7 @@ class Account extends Component {
                     <ItemModal />
                 </Container>
 
-                <Container style={containerStyles}>
+                <Container className='listingDetails'>
                     <h4 style={{
                         borderBottom: '2px solid #888888',
                         paddingBottom: '1rem'
@@ -65,6 +59,7 @@ class Account extends Component {
                     </h4>
                     <ItemList />
                 </Container>
+                </Row>
             </div>
         );
     };

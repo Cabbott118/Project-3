@@ -1,5 +1,6 @@
 body {
     background-color: #efefef;
+    font-family: 'Inter', sans-serif;
     color: #a9a9a9;
 }
 
@@ -15,13 +16,26 @@ a:hover {
     background-color: #ff3b3f;
 }
 
-.noHover{
-    pointer-events: none;
+.accountRow, .quickSearchSide {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.accountDetails, .quickSearchCol {
+    flex: 40%;
+    padding: 20px;
+}
+
+.listingDetails {   
+    flex: 60%;
+    padding: 20px;
 }
 
 h1, h2, h3 {
     color: #89b7c2;
     font-family: 'Inter', sans-serif;
+    font-weight: bolder;
 }
 
 h4, h5, h6 {
@@ -30,4 +44,33 @@ h4, h5, h6 {
 
 .modal-backdrop.show {
     opacity: .2;
+}
+
+@media (max-width: 700px) {
+    .accountRow {   
+        width: 100vw;
+        padding: 0px;
+    }
+
+    .accountDetails, .listingDetails {   
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    h2, h3, h4, h5, h6 {
+        font-size: 1rem;
+    }
 }
