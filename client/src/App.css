@@ -3,8 +3,20 @@ body {
     color: #a9a9a9;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+  }
+
 a:hover {
     text-decoration: none;
+}
+
+.dropDown:hover {
+    background-color: #ff3b3f;
+}
+
+.noHover{
+    pointer-events: none;
 }
 
 h1, h2, h3 {

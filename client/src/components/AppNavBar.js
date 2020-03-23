@@ -6,7 +6,12 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    Container
+    NavLink,
+    Container,
+    UncontrolledDropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,8 +20,8 @@ import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
 
 const NavbarStyle = {
-    // height: '8vh',
-    backgroundColor: 'rgba(0, 0, 0, .8)'
+    backgroundColor: 'rgba(0, 0, 0, .8)',
+    color: 'white',
 };
 
 class AppNavBar extends Component {
@@ -37,57 +42,23 @@ class AppNavBar extends Component {
     };
 
     render() {
-        const { isAuthenticated, user } = this.props.auth;
+        const { isAuthenticated } = this.props.auth;
         const authLinks = (
             <Fragment>
-                <NavItem>
-                    <span
-                        className='navbar-text mr-3'
-                    >
-                        <strong>{ user ? `Welcome, ${user.first_name}` : '' }</strong>
-                    </span>
-                </NavItem>
-                <NavItem>
-                    <span
-                        className='navbar-text mr-3'
-                        style={{
-                            color: 'white',
-                            textDecoration: 'none'
-                        }}
-                    >
-                        <a href='/listings'>Listings</a>
-                    </span>
-                </NavItem>
-                <NavItem>
-                    <span
-                        className='navbar-text mr-3'
-                        style={{
-                            color: 'white',
-                            textDecoration: 'none'
-                        }}
-                    >
-                        <a href='/account'>Account</a>
-                    </span>
-                </NavItem>
-                <NavItem>
-                    <Logout />
-                </NavItem>
+                <UncontrolledDropdown setActiveFromChild>
+                    <DropdownToggle tag="a" className="nav-link" style={{color: 'white'}} caret>
+                        Account
+                    </DropdownToggle>
+                    <DropdownMenu style={NavbarStyle}>
+                        <DropdownItem className='dropDown'><NavLink href='/account' style={{color: 'white'}}>Profile</NavLink></DropdownItem>
+                        <DropdownItem className='dropDown'><Logout /></DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
             </Fragment>
         );
 
         const guestLinks = (
             <Fragment>
-                <NavItem>
-                    <span
-                        className='navbar-text mr-3'
-                        style={{
-                            color: 'white',
-                            textDecoration: 'none'
-                        }}
-                    >
-                        <a href='/listings'>Listings</a>
-                    </span>
-                </NavItem>
                 <NavItem>
                     <RegisterModal />
                 </NavItem>
@@ -98,7 +69,6 @@ class AppNavBar extends Component {
         );
 
         return (
-            // <div>
             <Navbar 
                 dark
                 expand='sm' 
@@ -110,12 +80,14 @@ class AppNavBar extends Component {
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className='ml-auto' navbar>
+                            <NavItem>
+                                <NavLink href='/listings' style={{color: 'white'}}>Listings</NavLink>
+                            </NavItem>
                             { isAuthenticated ? authLinks : guestLinks }
                         </Nav>
                     </Collapse>
                 </Container>
             </Navbar>
-            // </div>
         );
     };
 };

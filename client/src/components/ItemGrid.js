@@ -4,8 +4,6 @@ import ItemCard from './ItemCard';
 import {
     CardDeck,
     Container,
-    // Col,
-    // Row
 } from 'reactstrap';
 
 const gridStyle = {
@@ -19,13 +17,9 @@ class ItemGrid extends Component {
             <div>
             <AppNavBar />
             <Container style={gridStyle}>
-                {/* <Row> */}
-                    {/* <Col> */}
-                    <CardDeck>
+                <CardDeck>
                     <ItemCard />
-                    </CardDeck>
-                    {/* </Col> */}
-                {/* </Row> */}
+                </CardDeck>
             </Container>
             </div>
         );
