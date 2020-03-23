@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {
     Container,
-    ListGroup,
-    ListGroupItem,
     Button,Modal,
     ModalHeader,
     ModalBody,
@@ -14,23 +12,22 @@ import {
     Row,
     Col
 } from 'reactstrap';
-import { 
-    CSSTransition,
-    TransitionGroup
-} from 'react-transition-group';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import { getItems, editItem, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 const ListStyle = {
-    
+    width: '75%',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
+    marginBottom: '1.5rem',
+    padding: '5px'
 };
 
 const modalStyle = {
     backgroundColor: '#efefef',
     color: '#a9a9a9'
-}
+};
 
 class ItemList extends Component {
 
@@ -105,31 +102,26 @@ class ItemList extends Component {
 
         return(
             <div>
-            <Container style={ListStyle} className='mb-5'>
-                <ListGroup>
-                    <TransitionGroup className='item-list'>
-                        {items.map(({ _id, brand, trailer_type, deck_dimensions, weight, price, added_by, date }) => (
-                            <CSSTransition key={_id} timeout={500} classNames='fade'>
-                                <ListGroupItem>
-                                { userID === added_by ?  
-                                <div>
-                                    <Container>
-                                        <ButtonGroup className='float-right'>
-                                        <Button
-                                            color='primary'
-                                            size='sm'
-                                            // className='mt-3 mb-3'
-                                            onClick={this.toggle.bind(this, _id)}
+                {items.map(({ _id, brand, trailer_type, deck_dimensions, weight, price, added_by, date }) => (
+                    <div key={_id} > 
+                        { userID === added_by ?  
+                            <div style={ListStyle}>
+                                <Container>
+                                    <ButtonGroup className='float-right'>
+                                    <Button
+                                        color='primary'
+                                        size='sm'
+                                        onClick={this.toggle.bind(this, _id)}
                                         ><i className="fas fa-edit"></i>
-                                        </Button>
-                                        <Button
-                                            color='danger'
-                                            size='sm'
-                                            onClick={this.onDeleteClick.bind(this, _id)}
-                                            // Getting ID to delete item from key={_id} above
-                                            ><i className="fas fa-window-close"></i>
-                                        </Button>
-                                        </ButtonGroup>
+                                    </Button>
+                                    <Button
+                                        color='danger'
+                                        size='sm'
+                                        onClick={this.onDeleteClick.bind(this, _id)}
+                                        // Getting ID to delete item from key={_id} above
+                                        ><i className="fas fa-window-close"></i>
+                                    </Button>
+                                    </ButtonGroup>
                                         <Modal
                                             isOpen={this.state.modal}
                                             toggle={this.toggle}
@@ -145,7 +137,6 @@ class ItemList extends Component {
                                             >
                                             <Form onSubmit={this.onSubmit}>
                                             <FormGroup>
-                                
                                             <Label for='brand'>Brand</Label>
                                                 <Input 
                                                     type='text'
@@ -209,35 +200,30 @@ class ItemList extends Component {
                                             </Form>
                                             </ModalBody>
                                         </Modal>
-                                        
-                                    </Container>
-                                    <Container>
-                                        <Row>
-                                            <Col style={{color:'#888888'}}>
-                                                <b>{brand} </b>
-                                                <br />
-                                                <b>{trailer_type}</b>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <img src='https://via.placeholder.com/250x150' alt='Trailer Img' />
-                                            </Col>
-                                            <Col>
-                                                <span><h6>Deck Dimensions: </h6>{deck_dimensions}</span>
-                                                <span><h6>Maximum Weight Capacity: </h6>{weight}</span>
-                                                <span><h6>Price (per Day): </h6>${price}.00</span>
-                                            </Col>
-                                        </Row>
-                                    </Container>
-                                </div>
-                                : addListings }
-                                </ListGroupItem>
-                            </CSSTransition>
-                        ))}
-                    </TransitionGroup>
-                </ListGroup>
-            </Container>
+                                </Container>
+                                <Container>
+                                    <Row>
+                                        <Col style={{color:'#888888'}}>
+                                            <b>{brand} </b>
+                                            <br />
+                                            <b>{trailer_type}</b>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <img src='https://via.placeholder.com/250x150' alt='Trailer Img' />
+                                        </Col>
+                                        <Col>
+                                            <span><h6>Deck Dimensions: </h6>{deck_dimensions}</span>
+                                            <span><h6>Maximum Weight Capacity: </h6>{weight}</span>
+                                            <span><h6>Price (per Day): </h6>${price}.00</span>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            </div>
+                        : addListings }
+                    </div>
+                ))}
             </div>
         );
     };

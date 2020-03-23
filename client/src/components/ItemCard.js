@@ -50,8 +50,8 @@ class ItemCard extends Component {
                     <Card  style={cardStyle}>
                     <CardImg top width='100%' src='https://via.placeholder.com/250x150' alt='Trailer Img' />
                         <CardBody>
-                            <CardTitle><span className='text-left'>{t.brand}</span></CardTitle>
-                            <CardSubtitle><span className='text-left'>{t.trailer_type}</span></CardSubtitle>
+                            <CardTitle><span className='text-left'><b>{t.brand}</b></span></CardTitle>
+                            <CardSubtitle><span className='text-left'><b>{t.trailer_type}</b></span></CardSubtitle>
                             <CardText>Deck Dimensions: {t.deck_dimensions}</CardText>
                             <CardText>Total Weight Capacity: {t.weight}</CardText>
                             <CardText>Price (per Day): ${t.price}.00</CardText>
