@@ -32,7 +32,7 @@ class Account extends Component {
         return (
             <div>
                 <AppNavBar />
-                <Row className='accountRow'>
+                <Row className='accountRow justify-content-center'>
                 <Container className='accountDetails'>
                     <h4 style={{
                         borderBottom: '2px solid #888888',

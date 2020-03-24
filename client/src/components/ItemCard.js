@@ -68,7 +68,7 @@ class ItemCard extends Component {
         );
 
         return (
-            <Row>
+            <Row className='justify-content-center'>
                 { items.length === 0 ? noDisplay : trailer }
             </Row>
         );

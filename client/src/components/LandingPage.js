@@ -27,7 +27,7 @@ class LandingPage extends Component {
                     <div>
                         <Row>
                             <div className='quickSearchSide'>
-                                <h4>A bunch of random text for the side of quick search</h4>
+                                <h4 className='text-center'>A bunch of random text for the side of quick search</h4>
                             </div>
                             <div className='quickSearchCol'>
                                 <QuickSearch />
