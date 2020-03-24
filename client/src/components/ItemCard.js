@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+    Button,
     Card,
     CardImg,
     CardText,
@@ -7,7 +8,8 @@ import {
     CardTitle,
     CardSubtitle,
     Container,
-    Row
+    Row,
+    UncontrolledTooltip
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../actions/itemActions';
@@ -55,6 +57,23 @@ class ItemCard extends Component {
                             <CardText>Deck Dimensions: {t.deck_dimensions}</CardText>
                             <CardText>Total Weight Capacity: {t.weight}</CardText>
                             <CardText>Price (per Day): ${t.price}.00</CardText>
+                            <CardText>Added By: {t.added_by_fname} {t.added_by_lname}</CardText>
+                            
+                            <Button
+                                id='rentButton'
+                                outline
+                                style={{
+                                    marginTop: '2rem',
+                                    color: 'white',
+                                    background: '#ff3b3f'
+                                }}
+                                block
+                            >
+                                Rent
+                            </Button>
+                            <UncontrolledTooltip placement='top' target='rentButton'>
+                                Feature Currently Unavailable
+                            </UncontrolledTooltip>
                         </CardBody>
                     </Card>  
                 </div>

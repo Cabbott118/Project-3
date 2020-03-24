@@ -32,6 +32,8 @@ router.post('/', auth, (req, res) => {
         weight: req.body.weight,
         price: req.body.price,
         added_by: req.body.added_by,
+        added_by_fname: req.body.added_by_fname,
+        added_by_lname: req.body.added_by_lname,
         date: req.body.date
     });
     newItem.save()

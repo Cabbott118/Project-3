@@ -23,7 +23,15 @@ const ItemSchema = new Schema({
         type: String,
         required: true
     },
-    added_by :{
+    added_by: {
+        type: String,
+        required: true
+    },
+    added_by_fname: {
+        type: String,
+        required: true
+    },
+    added_by_lname: {
         type: String,
         required: true
     },

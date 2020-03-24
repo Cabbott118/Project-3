@@ -11,9 +11,13 @@ import { loadUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
 import ItemModal from './ItemModal';
 
+const accStyle = {
+    minHeight: '100vh',
+};
+
 const detailsStyle = {
     marginTop: '1rem'
-}
+};
 
 class Account extends Component {
     state = {
@@ -32,11 +36,22 @@ class Account extends Component {
         const user = this.props.auth.user
         if (!user) {
             return null;
-        }
-        console.log('STATE from Acc: ', this.state);
-        console.log('PROPS from Acc: ', this.props);
+        };
+
+        const userListings = (
+            <Container className='listingDetails'>
+                <h4 style={{
+                    borderBottom: '2px solid #888888',
+                    paddingBottom: '1rem'
+                }} className='text-center mb-2'>
+                    Current Listings for: {user.email}
+                </h4>
+                { this.props.auth.user.is_host ? <ItemList /> : null }
+            </Container>
+        );
+
         return (
-            <div>
+            <div style={accStyle}>
                 <AppNavBar />
                 <Container>
                 <Row className='accountRow justify-content-center'>
@@ -55,15 +70,8 @@ class Account extends Component {
                     { this.props.auth.user.is_host ? <ItemModal /> : <BecomeHostModal /> }
                 </Container>
 
-                <Container className='listingDetails'>
-                    <h4 style={{
-                        borderBottom: '2px solid #888888',
-                        paddingBottom: '1rem'
-                    }} className='text-center mb-2'>
-                        Current Listings for: {user.email}
-                    </h4>
-                    { this.props.auth.user.is_host ? <ItemList /> : null }
-                </Container>
+                    { this.props.auth.user.is_host ? userListings : null }
+                
                 </Row>
                 </Container>
             </div>

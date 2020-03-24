@@ -5,7 +5,8 @@ import {
     Form,
     FormGroup,
     Label,
-    Input
+    Input,
+    UncontrolledTooltip
 } from 'reactstrap';
 
 const lookUpStyle = {
@@ -51,7 +52,15 @@ class QuickSearch extends Component {
                                 placeholder="date placeholder"
                             />
                     </FormGroup>
-                    <Button block style={{background: '#ff3b3f'}}><i className="fas fa-search"></i> Search</Button>
+                    <Button 
+                        id='searchButton'
+                        block 
+                        style={{background: '#ff3b3f'}}>
+                        <i className="fas fa-search"></i> Search
+                    </Button>
+                    <UncontrolledTooltip placement='top' target='searchButton'>
+                        Feature Currently Unavailable
+                    </UncontrolledTooltip>
                 </Form>
             </Container>       
         );

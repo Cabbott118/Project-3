@@ -26,7 +26,9 @@ class ItemModal extends Component {
         deck_dimensions: '',
         weight: '',
         price: '',
-        added_by: ''
+        added_by: '',
+        added_by_fname: '',
+        added_by_lname: ''
     };
 
     static propTypes = {
@@ -57,7 +59,9 @@ class ItemModal extends Component {
             deck_dimensions: this.state.deck_dimensions,
             weight: this.state.weight,
             price: this.state.price,
-            added_by: user._id
+            added_by: user._id,
+            added_by_fname: user.first_name,
+            added_by_lname: user.last_name
         };
             
         // Add item via addItem action

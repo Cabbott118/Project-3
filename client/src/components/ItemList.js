@@ -96,10 +96,6 @@ class ItemList extends Component {
         const { _id } = this.props.auth.user;
         const userID = _id;
 
-        // const addListings = (
-        //     <p className='text-center'>Trailers to be hosted will be shown here.</p>
-        // );
-
         return(
             <div>
                 {items.map(({ _id, brand, trailer_type, deck_dimensions, weight, price, added_by, date }) => (
