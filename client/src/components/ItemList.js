@@ -59,6 +59,7 @@ class ItemList extends Component {
             modal: !this.state.modal,
             id
         });
+        console.log(this.state)
     };
 
     onChange = (e) => {
@@ -95,9 +96,9 @@ class ItemList extends Component {
         const { _id } = this.props.auth.user;
         const userID = _id;
 
-        const addListings = (
-            <p className='text-center'>Trailers to be hosted will be shown here.</p>
-        );
+        // const addListings = (
+        //     <p className='text-center'>Trailers to be hosted will be shown here.</p>
+        // );
 
         return(
             <div>
@@ -220,7 +221,7 @@ class ItemList extends Component {
                                     </Row>
                                 </Container>
                             </div>
-                        : addListings }
+                        : null }
                     </div>
                 ))}
             </div>

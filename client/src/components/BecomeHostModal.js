@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ItemModal from './ItemModal';
 import {
     Button,
     Modal,
@@ -7,10 +6,11 @@ import {
     ModalBody,
     Form,
     FormGroup,
-    // Label,
-    // Input
+    Label,
+    Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
+import { editUser } from '../actions/authActions'
 import PropTypes from 'prop-types';
 
 
@@ -22,17 +22,23 @@ const modalStyle = {
 class BecomeHostModal extends Component {
     state = {
         modal: false,
-        is_host: ''
+        id: this.props.auth.user._id,
+        first_name: this.props.auth.user.first_name,
+        last_name: this.props.auth.user.last_name,
+        email: this.props.auth.user.email,
+        is_host: this.props.auth.user.is_host,
+        date: Date.now
     };
 
     static propTypes = {
         auth: PropTypes.object.isRequired,
-        is_host: PropTypes.bool,
+        editUser: PropTypes.func.isRequired
     };
 
-    toggle = () => {
+    toggle = (user) => {
         this.setState({
-            modal: !this.state.modal
+            modal: !this.state.modal,
+            user
         });
     };
 
@@ -43,22 +49,25 @@ class BecomeHostModal extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { is_host } = this.state;
+        const { user } = this.props.auth;
 
-        this.setState({
+        if (!user._id) return null;
+
+        const editedUser = {
+            id: this.state.id,
+            first_name: this.state.first_name,
             is_host: true
-        });
-        console.log(is_host);
+        };
 
-
-        // Add item via addItem action
+        this.props.editUser(editedUser);
         this.toggle();
+
+        console.log(editedUser);
     };
 
     render() {
         return(
             <div>
-                { this.props.isHost ? <ItemModal /> : 
                 <Button
                     outline
                     style={{
@@ -66,7 +75,9 @@ class BecomeHostModal extends Component {
                         background: '#ff3b3f'
                     }}
                     className='mt-3 mb-3'
-                    onClick={this.toggle}><i className="fas fa-check-square"></i> Become a Host</Button> }
+                    onClick={this.toggle}>
+                    <i className="fas fa-check-square"></i> Become a Host
+                </Button>
 
                 <Modal
                     isOpen={this.state.modal}
@@ -83,7 +94,15 @@ class BecomeHostModal extends Component {
                     >
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                
+                            <Label for='first_name'>First Name</Label>
+                                <Input 
+                                    type='text'
+                                    name='first_name'
+                                    id='first_name'
+                                    placeholder='John'
+                                    className='mb-3'
+                                    onChange={this.onChange}
+                                />
                                 <Button
                                     outline
                                     style={{
@@ -107,4 +126,4 @@ const mapStateToProps = state => ({
     is_host: state.auth.is_host
 });
 
-export default connect(mapStateToProps, {  })(BecomeHostModal);
+export default connect(mapStateToProps, { editUser })(BecomeHostModal);

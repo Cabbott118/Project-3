@@ -6,7 +6,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    EDIT_USER
 } from '../actions/constants';
 
 const initialState = {
@@ -51,6 +52,10 @@ export default function(state = initialState, action) {
                 isAuthenticated: false,
                 isLoading: false
             }
+        case EDIT_USER: 
+            return {
+                ...state
+            };
         default: 
             return state;
     }

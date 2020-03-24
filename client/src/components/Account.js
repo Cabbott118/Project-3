@@ -33,8 +33,8 @@ class Account extends Component {
         if (!user) {
             return null;
         }
-        console.log('STATE: ', this.state);
-        console.log('PROPS: ', this.props);
+        console.log('STATE from Acc: ', this.state);
+        console.log('PROPS from Acc: ', this.props);
         return (
             <div>
                 <AppNavBar />
@@ -52,9 +52,7 @@ class Account extends Component {
                     <h5>{user.first_name} {user.last_name}</h5>
                     <h4 style={detailsStyle}>Registered Email:</h4>
                     <h5>{user.email}</h5>
-                    
-                    <BecomeHostModal />
-                    <ItemModal />
+                    { this.props.auth.user.is_host ? <ItemModal /> : <BecomeHostModal /> }
                 </Container>
 
                 <Container className='listingDetails'>
@@ -64,7 +62,7 @@ class Account extends Component {
                     }} className='text-center mb-2'>
                         Current Listings for: {user.email}
                     </h4>
-                    <ItemList />
+                    { this.props.auth.user.is_host ? <ItemList /> : null }
                 </Container>
                 </Row>
                 </Container>

@@ -8,7 +8,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    EDIT_USER
 } from '../actions/constants';
 
 // Check token and load user
@@ -79,6 +80,19 @@ export const login = ({ email, password }) => dispatch => {
                 type: LOGIN_FAIL
             });
          });
+};
+
+// Edit User
+export const editUser = (user) => (dispatch, getState) => {
+    axios
+        // Attaching token to request in header
+        .put(`/api/auth/${user.id}`, user, tokenConfig(getState))
+        .then(res => 
+            dispatch({
+                type: EDIT_USER,
+                payload: res.data
+            }))
+            .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // Logout User
