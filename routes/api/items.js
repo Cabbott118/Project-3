@@ -55,7 +55,7 @@ router.put("/:_id", auth, (req, res) => {
     .catch((error) => {
        return res.status(400).json({ couldnotupdate: "could not update item"})
     })
-  });
+});
 
 // @route  DELETE api/items
 // @desc   Delete An Item

@@ -16,6 +16,10 @@ const detailsStyle = {
 }
 
 class Account extends Component {
+    state = {
+        user: this.props.auth.user
+    };
+
     static propTypes = {
         loadUser: PropTypes.func.isRequired,
     };
@@ -29,9 +33,12 @@ class Account extends Component {
         if (!user) {
             return null;
         }
+        console.log('STATE: ', this.state);
+        console.log('PROPS: ', this.props);
         return (
             <div>
                 <AppNavBar />
+                <Container>
                 <Row className='accountRow justify-content-center'>
                 <Container className='accountDetails'>
                     <h4 style={{
@@ -60,6 +67,7 @@ class Account extends Component {
                     <ItemList />
                 </Container>
                 </Row>
+                </Container>
             </div>
         );
     };

@@ -48,7 +48,6 @@ router.post('/', (req, res) => {
                         }
                     );
                 });
-            
         });
 });
 
@@ -59,6 +58,25 @@ router.get('/user', auth, (req, res) => {
     User.findById(req.user.id)
         .select('-password')
         .then(user => res.json(user));
+});
+
+// @route  PUT api/auth/:id
+// @desc   Edit A User
+// @access Private
+router.put("/:_id", auth, (req, res) => {
+    //this returns a promise
+    User.findByIdAndUpdate(
+      req.params._id,
+      req.body,
+      { new: false, useFindAndModify: false },
+      () => {}
+    )
+    .then((updatedUser) => {
+       res.json(updatedUser) //we capture this via our promise-handler on the action
+    })
+    .catch((error) => {
+       return res.status(400).json({ couldnotupdate: "could not update item"})
+    })
 });
 
 
