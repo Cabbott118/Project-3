@@ -18,7 +18,23 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: true
+    },
+    user_location: {
+        type: String,
+        required: false
+    },
+    user_phone: {
+        type: String,
+        required: false
+    },
+    bank_account_number: {
+        type: String,
+        required: false
+    },
+    bank_routing_number: {
+        type: String,
+        required: false
     },
     is_host: {
         type: Boolean,

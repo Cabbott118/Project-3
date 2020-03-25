@@ -21,7 +21,7 @@ const detailsStyle = {
 
 class Account extends Component {
     state = {
-        user: this.props.auth.user
+        user: this.props.auth.user,
     };
 
     static propTypes = {
@@ -37,6 +37,17 @@ class Account extends Component {
         if (!user) {
             return null;
         };
+
+        // If user is registered as Host, populate Account page with userListings and hostInformation
+        const hostInformation = (
+            <div>
+                <h4 style={detailsStyle}>Location:</h4>
+                <h5>{user.user_location}</h5>
+                <h4 style={detailsStyle}>Phone Number:</h4>
+                <h5>{user.user_phone}</h5>
+                <ItemModal />
+            </div>
+        );
 
         const userListings = (
             <Container className='listingDetails'>
@@ -67,7 +78,9 @@ class Account extends Component {
                     <h5>{user.first_name} {user.last_name}</h5>
                     <h4 style={detailsStyle}>Registered Email:</h4>
                     <h5>{user.email}</h5>
-                    { this.props.auth.user.is_host ? <ItemModal /> : <BecomeHostModal /> }
+
+                    {/* Host Only Information */}
+                    { this.props.auth.user.is_host ? hostInformation : <BecomeHostModal /> }
                 </Container>
 
                     { this.props.auth.user.is_host ? userListings : null }

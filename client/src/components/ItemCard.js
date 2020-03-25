@@ -24,7 +24,7 @@ const noDisplayStyle = {
     color: '#888888',
     textAlign: 'center',
     marginTop: '2rem'
-}
+};
 
 class ItemCard extends Component {
 
