@@ -93,7 +93,7 @@ class Account extends Component {
                 }} className='text-center mb-2'>
                     Items You've Rented
                 </h4>
-                { this.props.auth.user.userRented ? <rentedItemsList /> : <h4>Looks like you're not currently renting!</h4> }
+                { this.props.auth.user.userRented ? <rentedItemsList /> : <h4 className='text-center'>Looks like you're not currently renting!</h4> }
             </Container>
         );
 
