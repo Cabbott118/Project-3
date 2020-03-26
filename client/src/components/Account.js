@@ -2,14 +2,26 @@ import React, { Component } from 'react';
 import AppNavBar from './AppNavBar';
 import BecomeHostModal from './BecomeHostModal'
 import ItemList from './ItemList';
+import ItemModal from './ItemModal';
 import {
     Container,
-    Row
+    Row,
+    Nav,
+    NavItem,
+    NavLink,
+    TabContent,
+    TabPane
 } from 'reactstrap';
+import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
-import ItemModal from './ItemModal';
+
+const tabContainerStyle = {
+    paddingTop: '1rem',
+    backgroundColor: 'white',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
+}
 
 const accStyle = {
     minHeight: '100vh',
@@ -21,11 +33,18 @@ const detailsStyle = {
 
 class Account extends Component {
     state = {
-        user: this.props.auth.user,
+        activeTab: '1',
+        user: this.props.auth.user
     };
 
     static propTypes = {
         loadUser: PropTypes.func.isRequired,
+    };
+
+    toggle = (tab) => {
+        if (this.state.activeTab !== tab) {
+            this.setState({ activeTab: tab });
+          }
     };
 
     componentDidMount() {
@@ -33,7 +52,7 @@ class Account extends Component {
     };
   
     render() { 
-        const user = this.props.auth.user
+        const user = this.props.auth.user;
         if (!user) {
             return null;
         };
@@ -47,6 +66,35 @@ class Account extends Component {
                 <h5>{user.user_phone}</h5>
                 <ItemModal />
             </div>
+        );
+        
+        const accountTab = (
+            <Container className='accountDetails'>
+                <h4 style={{
+                    borderBottom: '2px solid #888888',
+                    paddingBottom: '1rem'
+                }} className='text-center mb-2'>
+                    Account Details
+                </h4>
+                { user.is_admin ? <p>Administrator Account</p> : null }
+                <h4 style={detailsStyle}>Account Owner:</h4>
+                <h5>{user.first_name} {user.last_name}</h5>
+                <h4 style={detailsStyle}>Registered Email:</h4>
+                <h5>{user.email}</h5>
+                { this.props.auth.user.is_host ? hostInformation : <BecomeHostModal /> }
+            </Container>
+        );
+
+        const rentedItems = (
+            <Container className='rentedDetails'>
+                <h4 style={{
+                    borderBottom: '2px solid #888888',
+                    paddingBottom: '1rem'
+                }} className='text-center mb-2'>
+                    Items You've Rented
+                </h4>
+                { this.props.auth.user.userRented ? <rentedItemsList /> : <h4>Looks like you're not currently renting!</h4> }
+            </Container>
         );
 
         const userListings = (
@@ -64,29 +112,51 @@ class Account extends Component {
         return (
             <div style={accStyle}>
                 <AppNavBar />
-                <Container>
-                <Row className='accountRow justify-content-center'>
-                <Container className='accountDetails'>
-                    <h4 style={{
-                        borderBottom: '2px solid #888888',
-                        paddingBottom: '1rem'
-                    }} className='text-center mb-2'>
-                        Account Details
-                    </h4>
-                    { user.is_admin ? <p>Administrator Account</p> : null }
-                    <h4 style={detailsStyle}>Account Owner:</h4>
-                    <h5>{user.first_name} {user.last_name}</h5>
-                    <h4 style={detailsStyle}>Registered Email:</h4>
-                    <h5>{user.email}</h5>
+                    <Container style={tabContainerStyle}>
+                        <Nav tabs>
+                            <NavItem>
+                                <NavLink
+                                    className={classnames({ active: this.state.activeTab === '1' })}
+                                    onClick={() => { this.toggle('1'); }}
+                                >
+                                    Account
+                                </NavLink>
+                            </NavItem>
 
-                    {/* Host Only Information */}
-                    { this.props.auth.user.is_host ? hostInformation : <BecomeHostModal /> }
-                </Container>
+                            <NavItem>
+                                <NavLink
+                                    className={classnames({ active: this.state.activeTab === '2' })}
+                                    onClick={() => { this.toggle('2'); }}
+                                >
+                                    Rentals
+                                </NavLink>
+                            </NavItem>
 
-                    { this.props.auth.user.is_host ? userListings : null }
-                
-                </Row>
-                </Container>
+                            {/* Check if user is host. If host, show tab */}
+                            { this.props.auth.user.is_host ?
+                            <NavItem>
+                                <NavLink
+                                    className={classnames({ active: this.state.activeTab === '3' })}
+                                    onClick={() => { this.toggle('3'); }}
+                                >
+                                    Listings
+                                </NavLink>
+                            </NavItem>
+                            : null }
+                        </Nav>
+
+                        <TabContent activeTab={this.state.activeTab}>
+                            <TabPane tabId='1'>
+                                { this.state.activeTab == 1 ? accountTab : null }
+                            </TabPane>
+                            <TabPane tabId='2'>
+                                { this.state.activeTab == 2 ? rentedItems : null }
+                            </TabPane>
+                            <TabPane tabId='3'>
+                                { this.state.activeTab == 3 ? userListings : null }
+                            </TabPane>
+                        </TabContent>
+                    </Container>
             </div>
         );
     };

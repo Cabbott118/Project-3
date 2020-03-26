@@ -16,19 +16,18 @@ a:hover {
     background-color: #ff3b3f;
 }
 
-.accountRow, .quickSearchSide {
+.quickSearchSide {
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
 }
 
-.accountDetails, .quickSearchCol {
+.quickSearchCol {
     flex: 40%;
     padding: 20px;
 }
 
-.listingDetails {   
-    flex: 60%;
+.accountDetails, .rentedDetails, .listingDetails {   
     padding: 20px;
 }
 
@@ -44,17 +43,6 @@ h4, h5, h6 {
 
 .modal-backdrop.show {
     opacity: .2;
-}
-
-@media (max-width: 700px) {
-    .accountRow {   
-        width: 100vw;
-        padding: 0px;
-    }
-
-    .accountDetails, .listingDetails {   
-        padding: 20px;
-    }
 }
 
 @media (max-width: 600px) {
