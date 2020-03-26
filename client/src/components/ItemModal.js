@@ -28,7 +28,8 @@ class ItemModal extends Component {
         price: '',
         added_by: '',
         added_by_fname: '',
-        added_by_lname: ''
+        added_by_lname: '',
+        item_location: ''
     };
 
     static propTypes = {
@@ -61,7 +62,8 @@ class ItemModal extends Component {
             price: this.state.price,
             added_by: user._id,
             added_by_fname: user.first_name,
-            added_by_lname: user.last_name
+            added_by_lname: user.last_name,
+            item_location: this.state.item_location
         };
             
         // Add item via addItem action
@@ -147,7 +149,15 @@ class ItemModal extends Component {
                                     className='mb-3'
                                     onChange={this.onChange}
                                 />
-
+                                <Label for='item_location'>Trailer Location</Label>
+                                <Input 
+                                    type='text'
+                                    name='item_location'
+                                    id='item_location'
+                                    placeholder='Ex: Tampa'
+                                    className='mb-3'
+                                    onChange={this.onChange}
+                                />
                                 <Button
                                     outline
                                     style={{

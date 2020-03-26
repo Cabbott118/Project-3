@@ -59,7 +59,7 @@ class ItemList extends Component {
             modal: !this.state.modal,
             id
         });
-        console.log(this.state)
+        console.log(this.state);
     };
 
     onChange = (e) => {
@@ -99,7 +99,7 @@ class ItemList extends Component {
         return(
             <div>
                 {items.map(({ _id, brand, trailer_type, deck_dimensions, weight, price, added_by, date }) => (
-                    <div key={_id} > 
+                    <div key={ _id } > 
                         { userID === added_by ?  
                             <div style={ListStyle}>
                                 <Container>

@@ -29,6 +29,7 @@ a:hover {
 
 .accountDetails, .rentedDetails, .listingDetails {   
     padding: 20px;
+    min-height: 50vh;
 }
 
 h1, h2, h3 {

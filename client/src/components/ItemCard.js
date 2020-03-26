@@ -49,7 +49,7 @@ class ItemCard extends Component {
         const trailer = items.map(t => {
             return(
                 <div key={t._id} style={{margin: '5px'}}>  
-                    <Card  style={cardStyle}>
+                    <Card style={cardStyle}>
                     <CardImg top width='100%' src='https://via.placeholder.com/250x150' alt='Trailer Img' />
                         <CardBody>
                             <CardTitle><span className='text-left'><b>{t.brand}</b></span></CardTitle>
@@ -57,7 +57,7 @@ class ItemCard extends Component {
                             <CardText>Deck Dimensions: {t.deck_dimensions}</CardText>
                             <CardText>Total Weight Capacity: {t.weight}</CardText>
                             <CardText>Price (per Day): ${t.price}.00</CardText>
-                            <CardText>Added By: {t.added_by_fname} {t.added_by_lname}</CardText>
+                            <CardText>Location: {t.item_location}</CardText>
                             
                             <Button
                                 id='rentButton'

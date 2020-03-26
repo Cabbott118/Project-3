@@ -34,6 +34,7 @@ router.post('/', auth, (req, res) => {
         added_by: req.body.added_by,
         added_by_fname: req.body.added_by_fname,
         added_by_lname: req.body.added_by_lname,
+        item_location: req.body.item_location,
         date: req.body.date
     });
     newItem.save()
