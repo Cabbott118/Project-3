@@ -40,9 +40,8 @@ const cardStyle = {
 };
 
 const resultsContainer = {
-    borderRadius: '5px',
-    // backgroundColor: 'rgba(0, 0, 0, .1)'
-}
+    borderRadius: '5px'
+};
 
 class LandingPage extends Component {
     state = {
@@ -70,7 +69,12 @@ class LandingPage extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const searchCriteria = this.state.rentCity;
+        let input = document.getElementById('rentCity');
+        let string = input.value;
+        let searchCriteria = this.state.rentCity;
+        searchCriteria = string[0].toUpperCase() + string.slice(1);
+
+        
         this.props.searchItems(searchCriteria);
         const trailerArray = this.props.item.items;
         const results  = trailerArray.filter(item => item.item_location === searchCriteria);
@@ -81,8 +85,6 @@ class LandingPage extends Component {
     };
 
     render() {
-        console.log('PROPS: ', this.props);
-        console.log('STATE: ', this.state);
         const search = (
             <div>
                 <h4 style={{marginTop: '1rem', textAlign: 'center'}}>Search trailers based on location</h4>

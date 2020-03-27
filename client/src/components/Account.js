@@ -145,12 +145,15 @@ class Account extends Component {
 
                         <TabContent activeTab={this.state.activeTab}>
                             <TabPane tabId='1'>
+                                {/* eslint-disable-next-line */}
                                 { this.state.activeTab == 1 ? accountTab : null }
                             </TabPane>
                             <TabPane tabId='2'>
+                                {/* eslint-disable-next-line */}
                                 { this.state.activeTab == 2 ? rentedItems : null }
                             </TabPane>
                             <TabPane tabId='3'>
+                                {/* eslint-disable-next-line */}
                                 { this.state.activeTab == 3 ? userListings : null }
                             </TabPane>
                         </TabContent>

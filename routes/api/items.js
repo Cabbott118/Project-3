@@ -20,6 +20,9 @@ router.get('/', (req, res) => {
     .then(items => res.json(items));
 });
 
+// @route  GET api/items
+// @desc   Get Filtered Items
+// @access Public
 router.get('/:item_location', (req, res) => {
     // Get items and sort
     Item.find(req.params)
