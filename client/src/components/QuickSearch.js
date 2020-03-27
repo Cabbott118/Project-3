@@ -12,7 +12,7 @@ import {
     Form,
     FormGroup,
     Label,
-    Input,
+    Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
@@ -66,7 +66,9 @@ class QuickSearch extends Component {
         const trailerArray = this.props.item.items;
         const results  = trailerArray.filter(item => item.item_location === searchCriteria);
 
-        this.setState({ searchedArray: results });
+        this.setState({
+            searchedArray: results
+        });
     };
 
 
@@ -147,20 +149,18 @@ class QuickSearch extends Component {
             );
         });
 
-        const noDisplay = (
-            <Container>
-                <p style={noDisplayStyle}>Sorry, we've got no results to display at this time.</p>
-            </Container>
-        );
+        // const noDisplay = (
+        //     <Container>
+        //         <p style={noDisplayStyle}>Sorry, we've got no results to display at this time.</p>
+        //     </Container>
+        // );
 
         return(
             <div>
                 <Container style={lookUpStyle}>
                     {search}
+                    {searchedArray.length === 0  ? null : <CardDeck>{searchedResults}</CardDeck>}
                 </Container>   
-                <Container style={lookUpStyle}>
-                    {searchedArray.length === 0  ? noDisplay : <CardDeck>{searchedResults}</CardDeck>}
-                </Container>    
             </div>
         );
     };

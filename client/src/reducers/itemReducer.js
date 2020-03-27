@@ -1,5 +1,6 @@
 import { 
     GET_ITEMS,
+    SEARCH_ITEMS,
     ADD_ITEM,
     EDIT_ITEM,
     DELETE_ITEM,
@@ -20,6 +21,12 @@ export default function(state = initialState, action) {
                 ...state,
                 items: action.payload,
                 loading: false
+            };
+
+        case SEARCH_ITEMS:
+            return {
+                ...state,
+                items: state.items.filter(item => item.item_location === action.payload)
             };
 
         case ADD_ITEM: 

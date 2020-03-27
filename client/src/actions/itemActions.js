@@ -23,6 +23,19 @@ export const getItems = () => dispatch => {
             .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
+// Go to itemReducer and check type
+export const searchItems = (item) => dispatch => {
+    dispatch(setItemsLoading());
+    axios // Proxy giving ability to shorten endpoint
+        .get(`/api/items/${item.item_location}`)
+        .then(res =>
+            dispatch({
+                type: GET_ITEMS,
+                payload: res.data
+            }))
+            .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
 export const addItem = (item) => (dispatch, getState) => {
     axios
         // Attaching token to request in header

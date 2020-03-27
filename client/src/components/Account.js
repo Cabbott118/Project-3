@@ -5,7 +5,6 @@ import ItemList from './ItemList';
 import ItemModal from './ItemModal';
 import {
     Container,
-    Row,
     Nav,
     NavItem,
     NavLink,
@@ -21,7 +20,7 @@ const tabContainerStyle = {
     paddingTop: '1rem',
     backgroundColor: 'white',
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
-}
+};
 
 const accStyle = {
     minHeight: '100vh',
@@ -34,11 +33,10 @@ const detailsStyle = {
 class Account extends Component {
     state = {
         activeTab: '1',
-        user: this.props.auth.user
     };
 
     static propTypes = {
-        loadUser: PropTypes.func.isRequired,
+        loadUser: PropTypes.func.isRequired
     };
 
     toggle = (tab) => {
@@ -163,8 +161,7 @@ class Account extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth,
-    user: state.auth
+    auth: state.auth
 });
 
 export default connect(

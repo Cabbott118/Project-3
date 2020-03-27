@@ -8,8 +8,7 @@ import {
     CardTitle,
     CardSubtitle,
     Container,
-    Row,
-    UncontrolledTooltip
+    Row
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../actions/itemActions';
@@ -37,15 +36,15 @@ class ItemCard extends Component {
 
     componentDidMount() {
         this.props.getItems();
-    }
+    };
 
     onDeleteClick = (id) => {
         this.props.deleteItem(id);
-    }
+    };
 
     render() {
         const { items } = this.props.item;
-
+        const { isAuthenticated } = this.props;
         const trailer = items.map(t => {
             return(
                 <div key={t._id} style={{margin: '5px'}}>  
@@ -59,21 +58,19 @@ class ItemCard extends Component {
                             <CardText>Price (per Day): ${t.price}.00</CardText>
                             <CardText>Location: {t.item_location}</CardText>
                             
-                            <Button
-                                id='rentButton'
-                                outline
-                                style={{
-                                    marginTop: '2rem',
-                                    color: 'white',
-                                    background: '#ff3b3f'
-                                }}
-                                block
-                            >
-                                Rent
-                            </Button>
-                            <UncontrolledTooltip placement='top' target='rentButton'>
-                                Feature Currently Unavailable
-                            </UncontrolledTooltip>
+                            { isAuthenticated ? 
+                                <Button
+                                    outline
+                                    style={{
+                                        marginTop: '2rem',
+                                        color: 'white',
+                                        background: '#ff3b3f'
+                                    }}
+                                    block
+                                >
+                                    Rent
+                                </Button>
+                            : null }
                         </CardBody>
                     </Card>  
                 </div>
