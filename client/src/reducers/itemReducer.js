@@ -26,7 +26,7 @@ export default function(state = initialState, action) {
         case SEARCH_ITEMS:
             return {
                 ...state,
-                items: state.items.filter(item => item.item_location === action.payload)
+                items: state.items.filter(item => item.item_location !== action.payload)
             };
 
         case ADD_ITEM: 

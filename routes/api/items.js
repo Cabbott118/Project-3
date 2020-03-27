@@ -20,6 +20,13 @@ router.get('/', (req, res) => {
     .then(items => res.json(items));
 });
 
+router.get('/:item_location', (req, res) => {
+    // Get items and sort
+    Item.find(req.params)
+    .sort({ date: -1 })
+    .then(items => res.json(items));
+});
+
 // @route  POST api/items
 // @desc   Create An Item
 // @access Private

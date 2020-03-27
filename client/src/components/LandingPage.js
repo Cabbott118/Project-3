@@ -15,7 +15,7 @@ import {
     Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getItems } from '../actions/itemActions';
+import { getItems, searchItems } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 import About from './About';
 
@@ -41,7 +41,7 @@ const cardStyle = {
 
 const resultsContainer = {
     borderRadius: '5px',
-    backgroundColor: 'rgba(0, 0, 0, .1)'
+    // backgroundColor: 'rgba(0, 0, 0, .1)'
 }
 
 class LandingPage extends Component {
@@ -49,7 +49,7 @@ class LandingPage extends Component {
         rentCity: '',
         pickupDate: '',
         returnDate: '',
-        searchedArray: []
+        searchedArray: [],
     };
 
     static propTypes = {
@@ -71,6 +71,7 @@ class LandingPage extends Component {
         e.preventDefault();
 
         const searchCriteria = this.state.rentCity;
+        this.props.searchItems(searchCriteria);
         const trailerArray = this.props.item.items;
         const results  = trailerArray.filter(item => item.item_location === searchCriteria);
 
@@ -80,7 +81,8 @@ class LandingPage extends Component {
     };
 
     render() {
-        console.log(this.props)
+        console.log('PROPS: ', this.props);
+        console.log('STATE: ', this.state);
         const search = (
             <div>
                 <h4 style={{marginTop: '1rem', textAlign: 'center'}}>Search trailers based on location</h4>
@@ -196,5 +198,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
     mapStateToProps,
-    { getItems })
+    { getItems, searchItems })
     (LandingPage);
