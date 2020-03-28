@@ -16,7 +16,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.get('/', (req, res) => {
     // Get items and sort
     Item.find()
-    .sort({ date: -1 })
+    .sort({ trailer_type: 1 })
     .then(items => res.json(items));
 });
 

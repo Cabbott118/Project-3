@@ -172,7 +172,7 @@ class LandingPage extends Component {
 
                     <div>
                         <div className='quickSearchSide'>
-                            <h4 className='text-center'>A bunch of random text for the side of quick search</h4>
+                            <h4 className='text-center'>Search for a specific location, or browse all of our listings by clicking the 'Listings' link above</h4>
                         </div>
                         <div className='quickSearchCol'>
                             <div>
