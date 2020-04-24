@@ -13,16 +13,6 @@ const ListStyle = {
 };
 
 class ItemList extends Component {
-  state = {
-    id: this.props.id,
-    brand: this.props.brand,
-    trailer_type: this.props.trailer_type,
-    deck_dimensions: this.props.deck_dimensions,
-    weight: this.props.weight,
-    price: this.props.price,
-    date: Date.now,
-  };
-
   static propTypes = {
     loadUser: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
