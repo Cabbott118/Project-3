@@ -10,7 +10,8 @@ import {
   Input,
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addItem } from '../actions/itemActions';
+import { loadUser } from '../actions/authActions';
+import { getItems, editItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 const modalStyle = {
@@ -18,29 +19,53 @@ const modalStyle = {
   color: '#a9a9a9',
 };
 
-class ItemModal extends Component {
+class EditItem extends Component {
   state = {
     modal: false,
-    brand: '',
-    trailer_type: '',
-    deck_dimensions: '',
-    weight: '',
-    price: '',
-    added_by: '',
-    added_by_fname: '',
-    added_by_lname: '',
-    item_location: '',
+    id: null,
+    brand: null,
+    trailer_type: null,
+    deck_dimensions: null,
+    weight: null,
+    price: null,
   };
 
   static propTypes = {
-    auth: PropTypes.object.isRequired,
+    loadUser: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
+    getItems: PropTypes.func.isRequired,
+    editItem: PropTypes.func.isRequired,
+    item: PropTypes.object.isRequired,
   };
+
+  componentDidMount() {
+    this.props.getItems();
+  }
 
   toggle = () => {
     this.setState({
       modal: !this.state.modal,
     });
+
+    const {
+      id,
+      item: { items },
+    } = this.props;
+
+    for (let i = 0; i < items.length; i++) {
+      const trailer = items[i];
+      if (trailer._id === id) {
+        this.setState({
+          id: trailer._id,
+          brand: trailer.brand,
+          trailer_type: trailer.trailer_type,
+          deck_dimensions: trailer.deck_dimensions,
+          weight: trailer.weight,
+          price: trailer.price,
+        });
+        console.log(this.state);
+      }
+    }
   };
 
   onChange = (e) => {
@@ -50,55 +75,49 @@ class ItemModal extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { user } = this.props.auth;
+    const {
+      user: { _id },
+    } = this.props.auth;
 
-    if (!user._id) return null;
+    const {
+      id,
+      brand,
+      trailer_type,
+      deck_dimensions,
+      weight,
+      price,
+    } = this.state;
 
-    const newItem = {
-      brand: this.state.brand,
-      trailer_type: this.state.trailer_type,
-      deck_dimensions: this.state.deck_dimensions,
-      weight: this.state.weight,
-      price: this.state.price,
-      added_by: user._id,
-      added_by_fname: user.first_name,
-      added_by_lname: user.last_name,
-      item_location: this.state.item_location,
+    if (!_id) return null;
+
+    const editedItem = {
+      id: id,
+      brand: brand,
+      trailer_type: trailer_type,
+      deck_dimensions: deck_dimensions,
+      weight: weight,
+      price: price,
     };
 
-    // Add item via addItem action
-    this.props.addItem(newItem);
+    // Edit item via editItem action
+    this.props.editItem(editedItem);
     this.toggle();
   };
 
   render() {
+    const { brand, trailer_type, deck_dimensions, weight, price } = this.state;
     return (
       <div>
-        {this.props.isAuthenticated ? (
-          <Button
-            outline
-            style={{
-              color: 'white',
-              background: '#ff3b3f',
-            }}
-            className='mt-3 mb-3'
-            onClick={this.toggle}
-          >
-            <i className='fas fa-plus-square'></i> Add Trailer
-          </Button>
-        ) : (
-          <h4 className='text-left mt-3 mb-3'>
-            To list a trailer, simply log in and register to become a host.
-          </h4>
-        )}
-
+        <Button color='primary' size='sm' onClick={this.toggle}>
+          <i className='fas fa-edit'></i>
+        </Button>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
           style={modalStyle}
         >
           <ModalHeader toggle={this.toggle} style={modalStyle}>
-            Trailer Information
+            Edit Information
           </ModalHeader>
           <ModalBody style={modalStyle}>
             <Form onSubmit={this.onSubmit}>
@@ -108,7 +127,7 @@ class ItemModal extends Component {
                   type='text'
                   name='brand'
                   id='brand'
-                  placeholder='Ex: Big Tex Trailers...'
+                  placeholder={brand}
                   className='mb-3'
                   onChange={this.onChange}
                 />
@@ -118,7 +137,7 @@ class ItemModal extends Component {
                   type='text'
                   name='trailer_type'
                   id='trailer_type'
-                  placeholder='Ex: Dump, Enclosed, Livestock...'
+                  placeholder={trailer_type}
                   className='mb-3'
                   onChange={this.onChange}
                 />
@@ -128,7 +147,7 @@ class ItemModal extends Component {
                   type='text'
                   name='deck_dimensions'
                   id='deck_dimensions'
-                  placeholder='LxW (ft)...'
+                  placeholder={deck_dimensions}
                   className='mb-3'
                   onChange={this.onChange}
                 />
@@ -138,7 +157,7 @@ class ItemModal extends Component {
                   type='text'
                   name='weight'
                   id='weight'
-                  placeholder='in LBS...'
+                  placeholder={weight}
                   className='mb-3'
                   onChange={this.onChange}
                 />
@@ -148,19 +167,11 @@ class ItemModal extends Component {
                   type='text'
                   name='price'
                   id='price'
-                  placeholder='$'
+                  placeholder={price}
                   className='mb-3'
                   onChange={this.onChange}
                 />
-                <Label for='item_location'>Trailer Location</Label>
-                <Input
-                  type='text'
-                  name='item_location'
-                  id='item_location'
-                  placeholder='Ex: Tampa'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
+
                 <Button
                   outline
                   style={{
@@ -170,7 +181,7 @@ class ItemModal extends Component {
                   }}
                   block
                 >
-                  Submit
+                  Submit Edits
                 </Button>
               </FormGroup>
             </Form>
@@ -182,9 +193,13 @@ class ItemModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  item: state.item,
   auth: state.auth,
+  item: state.item,
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { addItem })(ItemModal);
+export default connect(mapStateToProps, {
+  getItems,
+  editItem,
+  loadUser,
+})(EditItem);
