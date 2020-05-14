@@ -49,7 +49,7 @@ class AppNavBar extends Component {
           <DropdownToggle
             tag='a'
             className='nav-link'
-            style={{ color: 'white' }}
+            style={{ color: 'white', cursor: 'pointer' }}
             caret
           >
             Account

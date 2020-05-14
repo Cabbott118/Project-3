@@ -32,12 +32,6 @@ const cardStyle = {
   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
 };
 
-const noDisplayStyle = {
-  color: '#888888',
-  textAlign: 'center',
-  marginTop: '2rem',
-};
-
 class QuickSearch extends Component {
   state = {
     rentCity: '',
@@ -165,12 +159,6 @@ class QuickSearch extends Component {
         </div>
       );
     });
-
-    // const noDisplay = (
-    //     <Container>
-    //         <p style={noDisplayStyle}>Sorry, we've got no results to display at this time.</p>
-    //     </Container>
-    // );
 
     return (
       <div>
