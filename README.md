@@ -43,3 +43,10 @@ From this tab, users also have access to the **Edit Button**
 
 After clicking the **Edit Button**, the Edit modal will be displayed with the placeholders being what is currently displayed.
 ![Edit](./readmeimgs/Edit2.JPG)
+
+# Future Development
+
+- User Messages to organize pickup and dropoffs of trailers
+- Credit card proccessing
+- Hook up available dates to allow further filtering in Quick Search
+- Finish logic for Rent button
