@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Alert,
   Button,
   Modal,
   ModalHeader,
@@ -36,6 +35,7 @@ class BecomeHostModal extends Component {
     user_phone: '',
     bank_account_number: '',
     bank_routing_number: '',
+    buttonDisabled: true,
     date: Date.now,
   };
 
@@ -52,6 +52,12 @@ class BecomeHostModal extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onClick = () => {
+    this.setState({
+      buttonDisabled: !this.state.buttonDisabled,
+    });
   };
 
   onSubmit = (e) => {
@@ -133,15 +139,6 @@ class BecomeHostModal extends Component {
                 <p style={{ borderBottom: '1px solid #a9a9a9' }}>
                   Banking Information
                 </p>
-                <small className='text-muted'>
-                  Don't worry, we won't be sharing this with anyone.
-                </small>
-                <br />
-                <small style={{ color: 'red' }}>
-                  Don't actually input real info just yet.
-                </small>
-                <br />
-                <br />
                 <Label for='bank_account_number'>Account Number</Label>
                 <Input
                   type='text'
@@ -179,12 +176,12 @@ class BecomeHostModal extends Component {
                     vestibulum mattis elementum.
                   </p>
                 </div>
-                <Alert color='danger'>
-                  By clicking Submit, you agree to our Hosting Terms &
-                  Conditions.
-                </Alert>
-                <p>Note: Changes may require a refresh to take effect.</p>
+                <Label style={{ paddingLeft: '20px' }} check>
+                  <Input onClick={this.onClick} type='checkbox' /> I have read
+                  and agree to the Terms & Conditions above.
+                </Label>
                 <Button
+                  disabled={this.state.buttonDisabled}
                   outline
                   style={{
                     marginTop: '2rem',
@@ -193,7 +190,7 @@ class BecomeHostModal extends Component {
                   }}
                   block
                 >
-                  Submit
+                  Become Host
                 </Button>
               </FormGroup>
             </Form>

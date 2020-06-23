@@ -60,6 +60,7 @@ class AppNavBar extends Component {
                 Profile
               </NavLink>
             </DropdownItem>
+            <DropdownItem divider />
             <DropdownItem className='dropDown'>
               <Logout />
             </DropdownItem>

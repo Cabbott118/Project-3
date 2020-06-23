@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Account from './components/Account';
+
+// Pages
+import Home from './pages/Home';
+import Account from './pages/Account';
+import ItemGrid from './pages/ItemGrid';
+
+// Components
+import AppNavBar from './components/AppNavBar';
 import Logout from './components/auth/Logout';
-import Hero from './components/Hero';
-import ItemGrid from './components/ItemGrid';
+
+// Redux
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
@@ -21,7 +28,8 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className='App'>
-            <Route exact path='/' component={Hero} />
+            <AppNavBar />
+            <Route exact path='/' component={Home} />
             <Route exact path='/listings' component={ItemGrid} />
             <Route exact path='/account' component={Account} />
             <Route exact path='/logout' component={Logout} />

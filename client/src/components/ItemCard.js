@@ -7,22 +7,17 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Container,
   Row,
+  Spinner,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 const cardStyle = {
-  width: '100%',
+  marginLeft: 'auto',
+  marginRight: 'auto',
   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
-};
-
-const noDisplayStyle = {
-  color: '#888888',
-  textAlign: 'center',
-  marginTop: '2rem',
 };
 
 class ItemCard extends Component {
@@ -39,7 +34,7 @@ class ItemCard extends Component {
   render() {
     const {
       auth: { isAuthenticated },
-      item: { items },
+      item: { items, loading },
     } = this.props;
 
     const trailer = items.map((t) => {
@@ -87,19 +82,15 @@ class ItemCard extends Component {
       );
     });
 
-    const noDisplay = (
-      <Container>
-        <h1 style={noDisplayStyle}>
-          Sorry, we've got no results to display at this time.
-        </h1>
-      </Container>
+    const spinner = (
+      <div style={{ marginLeft: '25vw', marginTop: '20vh' }}>
+        <Spinner style={{ width: '3rem', height: '3rem' }} color='dark' />
+      </div>
     );
 
-    return (
-      <Row className='justify-content-center'>
-        {items.length === 0 ? noDisplay : trailer}
-      </Row>
-    );
+    const trailerCards = <Row>{trailer}</Row>;
+
+    return <div>{loading ? spinner : trailerCards}</div>;
   }
 }
 

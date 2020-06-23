@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import AppNavBar from './AppNavBar';
-import BecomeHostModal from './BecomeHostModal';
-import ItemList from './ItemList';
-import ItemModal from './ItemModal';
+import BecomeHostModal from '../components/BecomeHostModal';
+import ItemList from '../components/ItemList';
+import ItemModal from '../components/ItemModal';
 import {
   Container,
   Nav,
@@ -16,14 +15,15 @@ import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
 
+const tabHeader = {
+  borderBottom: '2px solid #888888',
+  paddingBottom: '1rem',
+};
+
 const tabContainerStyle = {
   paddingTop: '1rem',
   backgroundColor: 'white',
   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
-};
-
-const accStyle = {
-  minHeight: '100vh',
 };
 
 const detailsStyle = {
@@ -71,13 +71,7 @@ class Account extends Component {
 
     const accountTab = (
       <Container className='accountDetails'>
-        <h4
-          style={{
-            borderBottom: '2px solid #888888',
-            paddingBottom: '1rem',
-          }}
-          className='text-center mb-2'
-        >
+        <h4 style={tabHeader} className='text-center mb-2'>
           Account Details
         </h4>
         {user.is_admin ? <p>Administrator Account</p> : null}
@@ -93,13 +87,7 @@ class Account extends Component {
 
     const rentedItems = (
       <Container className='rentedDetails'>
-        <h4
-          style={{
-            borderBottom: '2px solid #888888',
-            paddingBottom: '1rem',
-          }}
-          className='text-center mb-2'
-        >
+        <h4 style={tabHeader} className='text-center mb-2'>
           Items You've Rented
         </h4>
         {user.userRented ? (
@@ -114,13 +102,7 @@ class Account extends Component {
 
     const userListings = (
       <Container className='listingDetails'>
-        <h4
-          style={{
-            borderBottom: '2px solid #888888',
-            paddingBottom: '1rem',
-          }}
-          className='text-center mb-2'
-        >
+        <h4 style={tabHeader} className='text-center mb-2'>
           Current Listings for: {user.email}
         </h4>
         {user.is_host ? <ItemList /> : null}
@@ -128,60 +110,53 @@ class Account extends Component {
     );
 
     return (
-      <div style={accStyle}>
-        <AppNavBar />
-        <Container style={tabContainerStyle}>
-          <Nav tabs>
+      <Container style={tabContainerStyle}>
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === '1' })}
+              onClick={() => {
+                this.toggle('1');
+              }}
+            >
+              Account
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === '2' })}
+              onClick={() => {
+                this.toggle('2');
+              }}
+            >
+              Rentals
+            </NavLink>
+          </NavItem>
+
+          {/* Check if user is host. If host, show tab */}
+          {user.is_host ? (
             <NavItem>
               <NavLink
-                className={classnames({ active: activeTab === '1' })}
+                className={classnames({
+                  active: activeTab === '3',
+                })}
                 onClick={() => {
-                  this.toggle('1');
+                  this.toggle('3');
                 }}
               >
-                Account
+                Listings
               </NavLink>
             </NavItem>
+          ) : null}
+        </Nav>
 
-            <NavItem>
-              <NavLink
-                className={classnames({ active: activeTab === '2' })}
-                onClick={() => {
-                  this.toggle('2');
-                }}
-              >
-                Rentals
-              </NavLink>
-            </NavItem>
-
-            {/* Check if user is host. If host, show tab */}
-            {user.is_host ? (
-              <NavItem>
-                <NavLink
-                  className={classnames({
-                    active: activeTab === '3',
-                  })}
-                  onClick={() => {
-                    this.toggle('3');
-                  }}
-                >
-                  Listings
-                </NavLink>
-              </NavItem>
-            ) : null}
-          </Nav>
-
-          <TabContent activeTab={activeTab}>
-            <TabPane tabId='1'>{activeTab === '1' ? accountTab : null}</TabPane>
-            <TabPane tabId='2'>
-              {activeTab === '2' ? rentedItems : null}
-            </TabPane>
-            <TabPane tabId='3'>
-              {activeTab === '3' ? userListings : null}
-            </TabPane>
-          </TabContent>
-        </Container>
-      </div>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId='1'>{activeTab === '1' ? accountTab : null}</TabPane>
+          <TabPane tabId='2'>{activeTab === '2' ? rentedItems : null}</TabPane>
+          <TabPane tabId='3'>{activeTab === '3' ? userListings : null}</TabPane>
+        </TabContent>
+      </Container>
     );
   }
 }
