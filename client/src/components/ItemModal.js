@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Button,
   Modal,
   ModalHeader,
@@ -11,6 +12,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
+import { clearErrors } from '../actions/errorActions';
 import PropTypes from 'prop-types';
 
 const modalStyle = {
@@ -30,14 +32,30 @@ class ItemModal extends Component {
     added_by_fname: '',
     added_by_lname: '',
     item_location: '',
+    msg: null,
   };
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool,
+    clearErrors: PropTypes.func.isRequired,
   };
 
+  componentDidUpdate(prevProps) {
+    const { error } = this.props;
+    if (error !== prevProps.error) {
+      // Check for item addition error
+      if (error.id === 'ADD_FAIL') {
+        this.setState({ msg: error.msg.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
+  }
+
   toggle = () => {
+    // Clear Errors
+    this.props.clearErrors();
     this.setState({
       modal: !this.state.modal,
     });
@@ -49,9 +67,7 @@ class ItemModal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-
     const { user } = this.props.auth;
-
     if (!user._id) return null;
 
     const newItem = {
@@ -68,7 +84,6 @@ class ItemModal extends Component {
 
     // Add item via addItem action
     this.props.addItem(newItem);
-    this.toggle();
   };
 
   render() {
@@ -161,6 +176,9 @@ class ItemModal extends Component {
                   className='mb-3'
                   onChange={this.onChange}
                 />
+                {this.state.msg ? (
+                  <Alert color='danger'>{this.state.msg}</Alert>
+                ) : null}
                 <Button
                   outline
                   style={{
@@ -185,6 +203,7 @@ const mapStateToProps = (state) => ({
   item: state.item,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated,
+  error: state.error,
 });
 
-export default connect(mapStateToProps, { addItem })(ItemModal);
+export default connect(mapStateToProps, { addItem, clearErrors })(ItemModal);

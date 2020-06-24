@@ -4,6 +4,7 @@ import {
   GET_ITEMS,
   SEARCH_ITEMS,
   ADD_ITEM,
+  ADD_FAIL,
   EDIT_ITEM,
   DELETE_ITEM,
   ITEMS_LOADING,
@@ -53,9 +54,14 @@ export const addItem = (item) => (dispatch, getState) => {
         payload: res.data,
       })
     )
-    .catch((err) =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
+    .catch((err) => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, 'ADD_FAIL')
+      );
+      dispatch({
+        type: ADD_FAIL,
+      });
+    });
 };
 
 export const editItem = (item) => (dispatch, getState) => {

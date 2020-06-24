@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+
+// Reactstrap
 import {
   Collapse,
   Navbar,
@@ -13,8 +16,11 @@ import {
   DropdownMenu,
   DropdownToggle,
 } from 'reactstrap';
+
+// Redux
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
+// Components
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+// Reactstrap
 import { Container, Button, ButtonGroup, Row, Col } from 'reactstrap';
+
+// Redux
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import { getItems, deleteItem } from '../actions/itemActions';
-import PropTypes from 'prop-types';
+
+// Components
 import EditItem from './EditItem';
 
 const ListStyle = {

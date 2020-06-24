@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+
+// Components
+import Search from '../components/Search';
+
+// Reactstrap
+// import { Container } from 'reactstrap';
 
 class Home extends Component {
   render() {
     return (
-      <div>
-        <h1>Home Page</h1>
-      </div>
+      <Fragment>
+        <h1>Rent-Net</h1>
+        <Search />
+      </Fragment>
     );
   }
 }

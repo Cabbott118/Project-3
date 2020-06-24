@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 // Item Model
 const Item = require('../../models/Item');
+const { json } = require('body-parser');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -34,6 +35,26 @@ router.get('/:item_location', (req, res) => {
 // @desc   Create An Item
 // @access Private
 router.post('/', auth, (req, res) => {
+  const {
+    brand,
+    trailer_type,
+    deck_dimensions,
+    weight,
+    price,
+    item_location,
+  } = req.body;
+
+  if (
+    !brand ||
+    !trailer_type ||
+    !deck_dimensions ||
+    !weight ||
+    !price ||
+    !item_location
+  ) {
+    return res.status(400).json({ msg: 'Please complete all fields' });
+  }
+
   const newItem = new Item({
     brand: req.body.brand,
     trailer_type: req.body.trailer_type,

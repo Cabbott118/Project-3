@@ -2,6 +2,7 @@ import {
   GET_ITEMS,
   SEARCH_ITEMS,
   ADD_ITEM,
+  ADD_FAIL,
   EDIT_ITEM,
   DELETE_ITEM,
   ITEMS_LOADING,
@@ -10,12 +11,14 @@ import {
 const initialState = {
   items: [],
   loading: false,
+  location: '',
 };
 
 export default function (state = initialState, action) {
   // When object comes in from itemActions, test the type
   switch (action.type) {
     case GET_ITEMS:
+    case SEARCH_ITEMS:
       return {
         // Return items state
         ...state,
@@ -23,12 +26,9 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    case SEARCH_ITEMS:
+    case ADD_FAIL:
       return {
         ...state,
-        items: state.items.filter(
-          (item) => item.item_location !== action.payload
-        ),
       };
 
     case ADD_ITEM:
