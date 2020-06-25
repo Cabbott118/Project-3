@@ -1,3 +1,6 @@
+// TODO: Find permanent fix for searching items and displaying
+// on SearchResults page!
+
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
@@ -26,8 +29,9 @@ export class Search extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.searchItems(this.state.location);
-    window.location.href = `/listings/${this.state.location}`;
+    const { location } = this.state;
+    this.props.searchItems(location);
+    window.location.href = `/listings/${location}`;
   };
 
   render() {
@@ -69,7 +73,6 @@ export class Search extends Component {
                   color: 'white',
                   background: '#ff3b3f',
                 }}
-                // onClick={this.handle}
               >
                 Search
               </Button>
@@ -82,7 +85,6 @@ export class Search extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  item: state.item,
   filtered_results: state.item.filtered_results,
 });
 

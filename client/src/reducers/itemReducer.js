@@ -1,3 +1,6 @@
+// GET_FILTERED_ITEMS & SEARCH_ITEMS need to be reworked
+// Functioning as of now, just do same thing
+
 import {
   GET_ITEMS,
   GET_FILTERED_ITEMS,

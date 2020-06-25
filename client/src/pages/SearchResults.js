@@ -1,4 +1,8 @@
-import React, { Component } from 'react';
+// TODO: Results displaying properly for now, by using URL
+// in PROPS. Find a fix for this via Redux -> store search input,
+// use search input in function to hit endpoint in the API
+
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 // Reactstrap
@@ -14,26 +18,38 @@ export class SearchResults extends Component {
   };
 
   componentDidMount() {
-    this.props.getFilteredItems();
+    const { item_location } = this.props.match.params;
+    this.props.getFilteredItems(item_location);
   }
 
-  onClick = () => {
-    console.log(this.props);
-  };
-
   render() {
-    console.log(this.props.filtered_results);
+    const {
+      filtered_results,
+      match: {
+        params: { item_location },
+      },
+    } = this.props;
+    console.log(filtered_results);
     return (
-      <Container>
-        <h1>Searched Results</h1>
-        <Button onClick={this.onClick}>Log</Button>
-      </Container>
+      <Fragment>
+        <h3>Trailers in {item_location}</h3>
+
+        {filtered_results.map(
+          ({ _id, brand, trailer_type, deck_dimensions, weight, price }) => (
+            <div key={_id}>
+              {brand}
+              {trailer_type}
+              {deck_dimensions}
+              {weight}
+              {price}
+            </div>
+          )
+        )}
+      </Fragment>
     );
   }
 }
-
 const mapStateToProps = (state) => ({
-  item: state.item,
   filtered_results: state.item.filtered_results,
 });
 
