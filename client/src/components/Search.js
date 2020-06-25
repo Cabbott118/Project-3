@@ -27,12 +27,11 @@ export class Search extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.props.searchItems(this.state.location);
-
-    // window.location.href = `/listings/${this.state.location}`;
+    window.location.href = `/listings/${this.state.location}`;
   };
 
   render() {
-    console.log(this.props.item.items);
+    console.log('PROPS:', this.props);
     return (
       <Fragment>
         <Form onSubmit={this.onSubmit}>
@@ -70,7 +69,7 @@ export class Search extends Component {
                   color: 'white',
                   background: '#ff3b3f',
                 }}
-                onClick={this.handle}
+                // onClick={this.handle}
               >
                 Search
               </Button>
@@ -84,6 +83,7 @@ export class Search extends Component {
 
 const mapStateToProps = (state) => ({
   item: state.item,
+  filtered_results: state.item.filtered_results,
 });
 
 export default connect(mapStateToProps, {

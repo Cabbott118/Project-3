@@ -1,5 +1,6 @@
 import {
   GET_ITEMS,
+  GET_FILTERED_ITEMS,
   SEARCH_ITEMS,
   ADD_ITEM,
   ADD_FAIL,
@@ -10,19 +11,34 @@ import {
 
 const initialState = {
   items: [],
+  filtered_results: [],
   loading: false,
-  location: '',
 };
 
 export default function (state = initialState, action) {
   // When object comes in from itemActions, test the type
   switch (action.type) {
     case GET_ITEMS:
-    case SEARCH_ITEMS:
       return {
         // Return items state
         ...state,
         items: action.payload,
+        loading: false,
+      };
+
+    case SEARCH_ITEMS:
+      return {
+        // Return items state
+        ...state,
+        // filtered_results: [],
+        filtered_results: action.payload,
+        loading: false,
+      };
+
+    case GET_FILTERED_ITEMS:
+      return {
+        ...state,
+        filtered_results: action.payload,
         loading: false,
       };
 
