@@ -1,12 +1,8 @@
-// getFilteredItems & searchItems need to be reworked
-// Functioning as of now, just do same thing
-
 // Making requests to back-end
 import axios from 'axios';
 import {
   GET_ITEMS,
   GET_FILTERED_ITEMS,
-  SEARCH_ITEMS,
   ADD_ITEM,
   ADD_FAIL,
   EDIT_ITEM,
@@ -40,22 +36,6 @@ export const getFilteredItems = (data) => (dispatch) => {
     .then((res) =>
       dispatch({
         type: GET_FILTERED_ITEMS,
-        payload: res.data,
-      })
-    )
-    .catch((err) =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
-};
-
-// Go to itemReducer and check type
-export const searchItems = (search_criteria) => (dispatch) => {
-  dispatch(setItemsLoading());
-  axios // Proxy giving ability to shorten endpoint
-    .get(`/api/items/${search_criteria}`)
-    .then((res) =>
-      dispatch({
-        type: SEARCH_ITEMS,
         payload: res.data,
       })
     )

@@ -1,12 +1,7 @@
-// TODO: Results displaying properly for now, by using URL
-// in PROPS. Find a fix for this via Redux -> store search input,
-// use search input in function to hit endpoint in the API
-
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 // Reactstrap
-import { Button, Container } from 'reactstrap';
 
 // Redux
 import { connect } from 'react-redux';
@@ -18,33 +13,28 @@ export class SearchResults extends Component {
   };
 
   componentDidMount() {
-    const { item_location } = this.props.match.params;
-    this.props.getFilteredItems(item_location);
+    let search_param = JSON.parse(localStorage.getItem('search_location'));
+    this.props.getFilteredItems(search_param);
   }
 
   render() {
-    const {
-      filtered_results,
-      match: {
-        params: { item_location },
-      },
-    } = this.props;
-    console.log(filtered_results);
+    console.log(this.props);
+    const { filtered_results } = this.props;
+
+    const results = filtered_results.map((trailer) => {
+      return (
+        <div key={trailer._id}>
+          <p>{trailer.brand}</p>
+        </div>
+      );
+    });
+
+    const noResults = <p>No results for you</p>;
+
     return (
       <Fragment>
-        <h3>Trailers in {item_location}</h3>
-
-        {filtered_results.map(
-          ({ _id, brand, trailer_type, deck_dimensions, weight, price }) => (
-            <div key={_id}>
-              {brand}
-              {trailer_type}
-              {deck_dimensions}
-              {weight}
-              {price}
-            </div>
-          )
-        )}
+        <h1>Results Here:</h1>
+        {filtered_results.length > 0 ? results : noResults}
       </Fragment>
     );
   }

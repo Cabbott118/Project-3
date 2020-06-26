@@ -1,10 +1,6 @@
-// GET_FILTERED_ITEMS & SEARCH_ITEMS need to be reworked
-// Functioning as of now, just do same thing
-
 import {
   GET_ITEMS,
   GET_FILTERED_ITEMS,
-  SEARCH_ITEMS,
   ADD_ITEM,
   ADD_FAIL,
   EDIT_ITEM,
@@ -26,15 +22,6 @@ export default function (state = initialState, action) {
         // Return items state
         ...state,
         items: action.payload,
-        loading: false,
-      };
-
-    case SEARCH_ITEMS:
-      return {
-        // Return items state
-        ...state,
-        // filtered_results: [],
-        filtered_results: action.payload,
         loading: false,
       };
 

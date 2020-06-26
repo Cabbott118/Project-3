@@ -9,7 +9,7 @@ import { Form, InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 
 // Redux
 import { connect } from 'react-redux';
-import { searchItems } from '../actions/itemActions';
+import { getFilteredItems } from '../actions/itemActions';
 
 export class Search extends Component {
   state = {
@@ -20,7 +20,7 @@ export class Search extends Component {
   };
 
   static propTypes = {
-    searchItems: PropTypes.func.isRequired,
+    getFilteredItems: PropTypes.func.isRequired,
   };
 
   onChange = (e) => {
@@ -30,12 +30,11 @@ export class Search extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { location } = this.state;
-    this.props.searchItems(location);
+    localStorage.setItem('search_location', JSON.stringify(location));
     window.location.href = `/listings/${location}`;
   };
 
   render() {
-    console.log('PROPS:', this.props);
     return (
       <Fragment>
         <Form onSubmit={this.onSubmit}>
@@ -89,5 +88,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  searchItems,
+  getFilteredItems,
 })(Search);
