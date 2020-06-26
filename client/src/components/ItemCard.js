@@ -1,4 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+
+// Components
+import Spinner from './LoadingSpinner';
+
+// Reactstrap
 import {
   Button,
   Card,
@@ -8,11 +14,11 @@ import {
   CardTitle,
   CardSubtitle,
   Row,
-  Spinner,
 } from 'reactstrap';
+
+// Redux
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
-import PropTypes from 'prop-types';
 
 const cardStyle = {
   marginLeft: 'auto',
@@ -82,15 +88,13 @@ class ItemCard extends Component {
       );
     });
 
-    const spinner = (
-      <div style={{ marginLeft: '25vw', marginTop: '20vh' }}>
-        <Spinner style={{ width: '3rem', height: '3rem' }} color='dark' />
-      </div>
-    );
-
     const trailerCards = <Row>{trailer}</Row>;
 
-    return <div>{loading ? spinner : trailerCards}</div>;
+    return (
+      <div style={{ position: 'relative' }}>
+        {loading ? <Spinner top={'30vh'} left={'25vw'} /> : trailerCards}
+      </div>
+    );
   }
 }
 
