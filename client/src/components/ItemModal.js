@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+// Reactstrap
 import {
   Alert,
   Button,
@@ -7,13 +10,15 @@ import {
   ModalBody,
   Form,
   FormGroup,
+  FormText,
   Label,
   Input,
 } from 'reactstrap';
+
+// Redux
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
 import { clearErrors } from '../actions/errorActions';
-import PropTypes from 'prop-types';
 
 const modalStyle = {
   backgroundColor: '#efefef',
@@ -23,6 +28,7 @@ const modalStyle = {
 class ItemModal extends Component {
   state = {
     modal: false,
+    img_file: null,
     brand: '',
     trailer_type: '',
     deck_dimensions: '',
@@ -69,6 +75,10 @@ class ItemModal extends Component {
     e.preventDefault();
     const { user } = this.props.auth;
     if (!user._id) return null;
+
+    let { img_file } = this.state;
+    img_file = img_file.replace(/^.*\\/, '');
+    console.log(img_file);
 
     const newItem = {
       brand: this.state.brand,
@@ -118,6 +128,17 @@ class ItemModal extends Component {
           <ModalBody style={modalStyle}>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
+                <Label for='img_file'>Trailer Image File</Label>
+                <Input
+                  type='file'
+                  name='img_file'
+                  id='img_file'
+                  onChange={this.onChange}
+                />
+                <FormText color='muted' className='mb-3'>
+                  Please provide a good quality photo to be featured with your
+                  trailer listing.
+                </FormText>
                 <Label for='brand'>Brand</Label>
                 <Input
                   type='text'

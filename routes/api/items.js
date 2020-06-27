@@ -1,15 +1,16 @@
 const express = require('express');
+// const multer = require('multer');
+// const fs = require('fs');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const { json } = require('body-parser');
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true }));
 
 // Item Model
 const Item = require('../../models/Item');
-const { json } = require('body-parser');
-
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: true }));
 
 // @route  GET api/items
 // @desc   Get All Items
@@ -56,15 +57,15 @@ router.post('/', auth, (req, res) => {
   }
 
   const newItem = new Item({
-    brand: req.body.brand,
-    trailer_type: req.body.trailer_type,
-    deck_dimensions: req.body.deck_dimensions,
-    weight: req.body.weight,
-    price: req.body.price,
+    brand,
+    trailer_type,
+    deck_dimensions,
+    weight,
+    price,
     added_by: req.body.added_by,
     added_by_fname: req.body.added_by_fname,
     added_by_lname: req.body.added_by_lname,
-    item_location: req.body.item_location,
+    item_location,
     date: req.body.date,
   });
   newItem.save().then((item) => res.json(item));
