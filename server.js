@@ -23,6 +23,7 @@ mongoose
 
 // Use Routes
 app.use('/api/items', require('./routes/api/items'));
+app.use('/api/images', require('./routes/api/images'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 
