@@ -38,6 +38,7 @@ class ItemCard extends Component {
   }
 
   render() {
+    console.log(this.props);
     const {
       auth: { isAuthenticated },
       item: { items, loading },
