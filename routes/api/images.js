@@ -1,30 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const multer = require('multer');
+const fs = require('fs');
 
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
+// Multer Middleware
+const upload = require('../../middleware/upload');
+
 // Image Model
 const Image = require('../../models/Image');
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './uploads');
-  },
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + '-' + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
-
-const upload = multer({ storage: storage }).single('image');
-
+// @route  POST api/images
+// @desc   Create An Image
+// @access Public (Hidden)
 router.post('/', upload, (req, res) => {
   const newImage = new Image({
     fieldname: req.file.fieldname,
@@ -39,13 +30,33 @@ router.post('/', upload, (req, res) => {
   newImage.save().then((image) => res.json(image));
 });
 
+// @route  GET api/images
+// @desc   Find one image
+// @access Public (Hidden)
 router.get('/:id', (req, res) => {
+  console.log(req.params);
   Image.findById(req.params.id)
     .then((item) => {
       res.json(item);
       const filepath = item.path;
       console.log(filepath);
     })
+    .catch((err) => res.status(404).json({ success: false }));
+});
+
+// @route  DELETE api/images
+// @desc   Delete An Image
+// @access Public (Hidden)
+router.delete('/:id', (req, res) => {
+  // Find item to delete by ID
+  Image.findById(req.params.id)
+    // Remove Item from DB
+    .then((image) =>
+      image
+        .remove()
+        // Send Success message if success || Not Found if failed
+        .then(() => res.json({ success: true }))
+    )
     .catch((err) => res.status(404).json({ success: false }));
 });
 
