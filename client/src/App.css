@@ -1,65 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #efefef;
-    font-family: 'Inter', sans-serif;
-    color: #a9a9a9;
+  background-color: #efefef;
+  font-family: 'Inter', sans-serif;
+  color: #a9a9a9;
 }
 
 body::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .dropDown:hover {
-    background-color: #ff3b3f;
+  background-color: #ff3b3f;
 }
 
-.quickSearchSide {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
+.trailer-container,
+.map-container {
+  box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0, 0, 0, 0.15);
 }
 
-.quickSearchCol {
-    flex: 40%;
-    padding: 20px;
+.trailer-container {
+  margin-bottom: 1rem;
 }
 
-.accountDetails, .rentedDetails, .listingDetails {   
-    padding: 20px;
-    min-height: 50vh;
+.trailer-img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
 }
 
-h1, h2, h3 {
-    color: #89b7c2;
-    font-family: 'Inter', sans-serif;
-    font-weight: bolder;
-}
-
-h4, h5, h6 {
-    color: #888888;
+.accountDetails,
+.rentedDetails,
+.listingDetails {
+  padding: 20px;
+  min-height: 50vh;
 }
 
 .modal-backdrop.show {
-    opacity: .2;
-}
-
-@media (max-width: 600px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-    h4 {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 400px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-    h2, h3, h4, h5, h6 {
-        font-size: 1rem;
-    }
+  opacity: 0.2;
 }

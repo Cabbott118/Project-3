@@ -76,9 +76,9 @@ class ItemModal extends Component {
     const { user } = this.props.auth;
     if (!user._id) return null;
 
-    let { img_file } = this.state;
-    img_file = img_file.replace(/^.*\\/, '');
-    console.log(img_file);
+    // let { img_file } = this.state;
+    // img_file = img_file.replace(/^.*\\/, '');
+    // console.log(img_file);
 
     const newItem = {
       brand: this.state.brand,

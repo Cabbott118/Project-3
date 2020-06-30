@@ -29,7 +29,7 @@ app.use('/api/auth', require('./routes/api/auth'));
 
 // Static uploads folder
 // Use "path" property stored in Images collection to correctly display image
-// src='uploads\image-1593461437399.png'               <------- EXAMPLE ****
+// src='\uploads\image-1593461437399.png'               <------- EXAMPLE ****
 app.use('/uploads', express.static('uploads'));
 
 // Serve static assets in production

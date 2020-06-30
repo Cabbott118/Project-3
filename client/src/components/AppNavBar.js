@@ -87,7 +87,7 @@ class AppNavBar extends Component {
     );
 
     return (
-      <Navbar dark expand='sm' className='' style={NavbarStyle}>
+      <Navbar dark expand='sm' style={NavbarStyle}>
         <Container>
           <NavbarBrand href='/'>
             <strong style={{ color: '#ff3b3f' }}>LOGO</strong>

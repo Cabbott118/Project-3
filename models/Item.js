@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ItemSchema = new Schema({
-  img_file: {
-    type: String,
-    required: true,
-  },
+  // img_file: {
+  //   type: String,
+  //   required: true,
+  // },
   brand: {
     type: String,
     required: true,

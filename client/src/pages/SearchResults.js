@@ -5,7 +5,7 @@ import FilteredResults from '../components/FilteredResults';
 import MapContainer from '../components/maps/MapContainer';
 
 // Reactstrap
-import { Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 export class SearchResults extends Component {
   render() {
@@ -13,14 +13,18 @@ export class SearchResults extends Component {
     let search_location = JSON.parse(localStorage.getItem('search_location'));
 
     return (
-      <Row>
-        <Col>
-          <FilteredResults search_location={search_location} />
-        </Col>
-        <Col>
-          <MapContainer />
-        </Col>
-      </Row>
+      <Container>
+        <Row xs='1' sm='1' md='2' style={{ marginTop: '3rem' }}>
+          <Col>
+            <FilteredResults search_location={search_location} />
+          </Col>
+          <Col>
+            <div className='sticky-top'>
+              <MapContainer />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

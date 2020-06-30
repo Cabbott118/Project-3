@@ -28,7 +28,6 @@ export class MapContainer extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         <Marker onClick={this.onMarkerClick} name={'You are here.'} />
