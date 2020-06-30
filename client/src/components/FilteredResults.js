@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { getFilteredItems } from '../actions/itemActions';
 
 const card = {
-  width: '40%',
   padding: '10px',
 };
 

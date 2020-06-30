@@ -1,9 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 // Components
 import FilteredResults from '../components/FilteredResults';
+import MapContainer from '../components/maps/MapContainer';
 
 // Reactstrap
+import { Row, Col } from 'reactstrap';
 
 export class SearchResults extends Component {
   render() {
@@ -11,9 +13,14 @@ export class SearchResults extends Component {
     let search_location = JSON.parse(localStorage.getItem('search_location'));
 
     return (
-      <Fragment>
-        <FilteredResults search_location={search_location} />
-      </Fragment>
+      <Row>
+        <Col>
+          <FilteredResults search_location={search_location} />
+        </Col>
+        <Col>
+          <MapContainer />
+        </Col>
+      </Row>
     );
   }
 }
